@@ -1,0 +1,248 @@
+<body>
+<form novalidate #form="ngForm">
+    <div>
+      <div class="submit-form">
+        <div *ngIf="!submitted">
+          <div class="form-group">
+            <label for="title">إسم النشاط</label>
+            <input
+              type="text"
+              class="form-control"
+              id="title"
+              required
+              [(ngModel)]="activity.title"
+              name="title"
+              #title="ngModel"
+              [class.invalid]="title.invalid && title.touched"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="description">تعريف</label>
+            <input
+              class="form-control"
+              id="description"
+              required
+              [(ngModel)]="activity.description"
+              name="description"
+              #description="ngModel"
+              [class.invalid]="description.invalid && description.touched"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="description">العنوان</label>
+            <input
+              class="form-control"
+              id="address"
+              required
+              [(ngModel)]="activity.address"
+              name="address"
+              #address="ngModel"
+              [class.invalid]="address.invalid && address.touched"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="description">المعرف البريدي</label>
+            <input
+              class="form-control"
+              id="codePostal"
+              required
+              [(ngModel)]="activity.codePostal"
+              name="codePostal"
+              minlength="4"
+              maxlength="4"
+              #codePostal="ngModel"
+              [class.invalid]="codePostal.invalid && codePostal.touched"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="description">الولاية</label>
+            <select
+              class="form-control"
+              id="governorate"
+              required
+              [(ngModel)]="activity.governorate"
+              name="governorate"
+              #governorate="ngModel"
+              [class.invalid]="governorate.invalid && governorate.touched">
+              <option *ngFor="let dl of listStates" [value]="dl" >
+                {{ dl }}
+              </option>
+            </select>
+<!--            <select (change)="onSelect($event)"-->
+<!--                    class="form-control"-->
+<!--                    id="governorate"-->
+<!--                    required-->
+<!--                    [(ngModel)]="activity.governorate"-->
+<!--                    name="governorate"-->
+<!--                    #governorate="ngModel"-->
+<!--                    [class.invalid]="governorate.invalid && governorate.touched">-->
+<!--                    <option>إختر ولاية</option>-->
+<!--                    <option *ngFor="let states of state"-->
+<!--                                    value="{{states.name}}">-->
+<!--                              {{states.name}}-->
+<!--                    </option>-->
+<!--              </select>-->
+          </div>
+
+                        <div class="form-group">
+                          <label for="description">المدينة</label>
+                          <select
+                            class="form-control"
+                            id="ville"
+                            required
+                            [(ngModel)]="activity.ville"
+                            name="ville"
+                            #ville="ngModel"
+                            [class.invalid]="ville.invalid && ville.touched">
+                            <option *ngFor="let st of listCities" [value]="st" >
+                              {{ st }}
+                            </option>
+                          </select>
+
+<!--                          <select-->
+<!--                            class="form-control"-->
+<!--                          id="ville"-->
+<!--                          required-->
+<!--                          [(ngModel)]="activity.ville"-->
+<!--                          name="ville"-->
+<!--                          #ville="ngModel"-->
+<!--                          [class.invalid]="ville.invalid && ville.touched">-->
+<!--                            <option>إختر معتمدية</option>-->
+<!--                            <option *ngFor="let cities of-->
+<!--     city">{{cities.name}}</option>-->
+<!--                          </select>-->
+
+                        </div>
+
+                        <div class="form-group">
+                          <label for="description">المعرف الجبائي</label>
+                          <input
+                            class="form-control"
+                            id="codeFiscal"
+                            [(ngModel)]="activity.codeFiscal"
+                            name="codeFiscal"
+                          />
+                        </div>
+
+                        <div class="form-group">
+                          <label for="description">صورة الرمز</label>
+                          <input
+                            class="form-control"
+                            id="photo"
+                            [(ngModel)]="activity.photo"
+                            name="photo"
+                          />
+                        </div>
+
+                        <div class="form-group">
+                          <label for="description">البريد الإلكتروني</label>
+                          <input
+                            class="form-control"
+                            id="email"
+                            [(ngModel)]="activity.email"
+                            name="email"
+                          />
+                        </div>
+
+                        <div class="form-group">
+                          <label for="description">الهاتف</label>
+                          <input
+                            class="form-control"
+                            id="numTel"
+                            required
+                            [(ngModel)]="activity.numTel"
+                            name="numTel"
+                            pattern="[1-9]{2} [0-9]{3} [0-9]{3}"
+                            title="رقم الهاتف يجب أن يحتوي على الصيغة 678 345 12"
+                            placeholder="12 345 678"
+                            #numTel="ngModel"
+                            [class.invalid]="numTel.invalid && numTel.touched"
+                          />
+                        </div>
+
+                        <div class="form-group">
+                          <label for="description">موقع الواب</label>
+                          <input
+                            class="form-control"
+                            id="siteWeb"
+                            [(ngModel)]="activity.siteWeb"
+                            name="siteWeb"
+                          />
+                        </div>
+
+                        <div class="form-group">
+                          <label for="description">عدد العملة</label>
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="workerNumber"
+                            required
+                            [(ngModel)]="activity.workerNumber"
+                            name="workerNumber"
+                            #workerNumber="ngModel"
+                            [class.invalid]="workerNumber.invalid && workerNumber.touched"
+                          />
+                        </div>
+
+                        <div class="form-group">
+                          <label for="description">القيمة</label>
+                          <input
+
+                            class="form-control"
+                            id="amount"
+                            required
+                            minlength="4"
+                            maxlength="6"
+                            [(ngModel)]="activity.amount"
+                            name="amount"
+                            #amount="ngModel"
+                            [class.invalid]="amount.invalid && amount.touched"
+                          />
+                        </div>
+
+                        <div class="form-group">
+                          <label for="beneficiaryCin">معرف المنتفعة</label>
+                          <select
+                            class="form-control"
+                            id="beneficiaryCin"
+                            required
+                            [(ngModel)]="activity.beneficiaryCin"
+                            name="beneficiaryCin"
+                            #beneficiaryCin="ngModel"
+                            [class.invalid]="beneficiaryCin.invalid && beneficiaryCin.touched">
+                            <option *ngFor="let st of listBeneficiaryCins" [value]="st" >
+                              {{ st }}
+                            </option>
+                          </select>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="dossierTitle">معرف الملف</label>
+                          <select
+                            class="form-control"
+                            id="dossierTitle"
+                            required
+                            [(ngModel)]="activity.dossierTitle"
+                            name="dossierTitle"
+                            #dossierTitle="ngModel"
+                            [class.invalid]="dossierTitle.invalid && dossierTitle.touched">
+                            <option *ngFor="let st of listDossierTitles" [value]="st" >
+                              {{ st }}
+                            </option>
+                          </select>
+                        </div>
+
+                        <button (click)="saveActivity()" class="btn btn-info btn-lg btn-block" [disabled]="form.invalid">Submit</button>
+                      </div>
+
+                      <div *ngIf="submitted">
+                        <button class="btn btn-info btn-lg btn-block" (click)="newActivity()">إضافة نشاط</button>
+                      </div>
+                    </div>
+                  </div>
+              </form>
+              </body>

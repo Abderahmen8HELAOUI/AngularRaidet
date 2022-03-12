@@ -1,0 +1,107 @@
+<body>
+<div>
+  <div *ngIf="currentDocument.id" class="edit-form">
+    <h4>المشروع</h4>
+
+    <form>
+      <div class="form-group">
+        <label for="name">إسم الوثيقة</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          [(ngModel)]="currentDocument.title"
+          name="name"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="description">صورة الوثيقة</label>
+        <input
+          type="text"
+          class="form-control"
+          id="photo"
+          [(ngModel)]="currentDocument.photo"
+          name="photo"
+        />
+      </div>
+
+
+
+      <div class="form-group">
+        <label for="description">الوصف</label>
+        <input
+          type="text"
+          class="form-control"
+          id="description"
+          [(ngModel)]="currentDocument.description"
+          name="description"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="dossierTitle">معرف الملف</label>
+        <select
+          class="form-control"
+          id="dossierTitle"
+          [(ngModel)]="currentDocument.dossierTitle"
+          name="dossierTitle">
+          <option *ngFor="let st of listDossierTitles" [value]="st" >
+            {{ st }}
+          </option>
+        </select>
+      </div>
+
+
+      <div class="form-group">
+        <label for="description">العنوان</label>
+        <input
+          type="text"
+          class="form-control"
+          id="address"
+          [(ngModel)]="currentDocument.creationDate"
+          name="address"
+        />
+      </div>
+
+      <div class="form-group">
+        <label><strong>وضعية الوثيقة:</strong></label>
+        {{ currentDocument.published ? "مقبولة" : "في طور الفحص" }}
+      </div>
+    </form>
+
+    <button
+      class="badge badge-primary mr-2"
+      *ngIf="currentDocument.published"
+      (click)="updatePublished(false)"
+    >
+      في طور الفحص
+    </button>
+    <button
+      *ngIf="!currentDocument.published"
+      class="badge badge-primary mr-2"
+      (click)="updatePublished(true)"
+    >
+      قبول الوثيقة
+    </button>
+
+    <button class="badge badge-danger mr-2" (click)="deleteDocument()">
+      حذف
+    </button>
+
+    <button
+      type="submit"
+      class="badge badge-success mb-2"
+      (click)="updateDocument()"
+    >
+      تحديث
+    </button>
+
+  </div>
+
+  <div *ngIf="!currentDocument.id">
+    <br />
+    <p>لا يمكن الوصول للوثيقة...</p>
+  </div>
+</div>
+</body>

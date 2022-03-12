@@ -1,0 +1,170 @@
+<div class="list row">
+  <div class="col-md-8">
+    <div class="input-group mb-3">
+      <input style="max-width: 200px;"
+        type="text"
+        class="form-control"
+        placeholder="البحث باسم المشروع"
+        [(ngModel)]="title"
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="searchTitle()">
+          البحث
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <pagination-controls
+      previousLabel="السابق"
+      nextLabel="التالي"
+      [responsive]="true"
+      (pageChange)="handlePageChange($event)"
+    ></pagination-controls>
+  </div>
+
+  <div class="col-md-12">
+    <h1 style="font-family: Amiri;text-align: center;">قائمة الأنشطة</h1>
+
+    <table class="table" id="excel-table">
+      <thead class="thead-light">
+      <tr>
+        <th>الإسم</th>
+        <th>الوصف</th>
+        <th>العنوان</th>
+        <th>العرف الجبائي</th>
+        <th>الشعار</th>
+        <th>المايل</th>
+        <th>الهاتف</th>
+        <th>الواب</th>
+        <th>عدد العملة</th>
+        <th>رأس المال</th>
+        <th>ب. ت. و الباعثة</th>
+        <th>معرف الملف</th>
+        <th>الإنطلاق</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr (click)="setActiveActivity(activity, i)"
+          *ngFor="let activity of activities| paginate : {
+             itemsPerPage: pageSize,
+             currentPage: page,
+             totalItems: count
+           };
+     let i = index"
+          [class.active]="i == currentIndex">
+
+        <td>{{activity.title}}</td>
+        <td>{{activity.description}}</td>
+        <td>{{activity.address}},&nbsp;{{ activity.codePostal}},&nbsp;{{ activity.ville}},&nbsp;{{ activity.governorate}}</td>
+        <td>{{activity.codeFiscal}}</td>
+        <td>{{activity.photo}}</td>
+        <td>{{activity.email}}</td>
+        <td>{{activity.numTel}}</td>
+        <td>{{activity.siteWeb}}
+        <td>{{activity.workerNumber}}</td>
+        <td>{{activity.amount |  currency:"دت ":"symbol":'6.3-3'}}</td>
+        <td>{{activity.beneficiaryCin}}</td>
+        <td>{{activity.dossierTitle}}</td>
+        <td>{{activity.published}}</td>
+
+      </tr>
+      </tbody>
+    </table>
+
+
+  </div>
+  <div class="col-md-8">
+    <div *ngIf="currentActivity.id">
+      <h4>النشاط</h4>
+      <div>
+        <label><strong>الإسم:</strong></label>
+        {{ currentActivity.title }}
+      </div>
+      <div>
+        <label><strong>التعريف:</strong></label>
+        {{ currentActivity.description }}
+      </div>
+      <div>
+        <label><strong>العنوان:</strong></label>
+        {{ currentActivity.address }}, {{ currentActivity.ville }}, {{ currentActivity.codePostal }},
+        {{ currentActivity.governorate }}
+      </div>
+
+      <div>
+        <label><strong>المعرف الجبائي:</strong></label>
+        {{ currentActivity.codeFiscal }}
+      </div>
+      <div>
+        <label><strong>صورة رمز المشروع:</strong></label>
+        {{ currentActivity.photo }}
+      </div>
+
+      <div>
+        <label><strong>العنوان الإلكتروني:</strong></label>
+        {{ currentActivity.email }}
+      </div>
+      <div>
+        <label><strong>الهاتف:</strong></label>
+        {{ currentActivity.numTel }}
+      </div>
+
+      <div>
+        <label><strong>موقع الواب:</strong></label>
+        {{ currentActivity.siteWeb }}
+      </div>
+      <div>
+        <label><strong>عدد العملة:</strong></label>
+        {{ currentActivity.workerNumber }}
+      </div>
+
+      <div>
+        <label><strong>المقدار:</strong></label>
+        {{ currentActivity.amount |  currency:"دت ":"symbol":'6.3-3' }}
+      </div>
+      <div>
+        <label><strong>معرف المنتفعة:</strong></label>
+        {{ currentActivity.beneficiaryCin }}
+      </div>
+
+      <div>
+        <label><strong>معرف الملف:</strong></label>
+        {{ currentActivity.dossierTitle }}
+      </div>
+
+      <div>
+        <label><strong>وضعية المشروع:</strong></label>
+        {{ currentActivity.published ? "إنطلق" : "في طور الإعداد" }}
+      </div>
+
+      <a class="badge badge-warning" routerLink="/activities/{{ currentActivity.id }}">
+        تحديث
+      </a>
+    </div>
+
+    <div *ngIf="!currentActivity">
+      <br />
+      <p>فضلا, قم باختيار نشاط...</p>
+    </div>
+  </div>
+
+  <div class="mt-3">
+    <button (click)="removeAllActivities()" class="m-3 btn btn-sm btn-danger">
+      حذف الكل
+    </button>
+
+    عدد الأشطة بالصفحة:
+    <select (change)="handlePageSizeChange($event)">
+      <option *ngFor="let size of pageSizes" [ngValue]="size">
+        {{ size }}
+      </option>
+    </select>
+    <button (click)="exportExcel()"
+            class="m-3 btn btn-sm btn-success mb-2">Excel أنقل إلى </button>
+  </div>
+</div>
+

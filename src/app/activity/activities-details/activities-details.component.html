@@ -1,0 +1,224 @@
+<body>
+<div>
+  <div *ngIf="currentActivity.id" class="edit-form">
+    <h4>المشروع</h4>
+
+    <form>
+      <div class="form-group">
+        <label for="name">إسم المشروع</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          [(ngModel)]="currentActivity.title"
+          name="name"
+        />
+      </div>
+      <div class="form-group">
+        <label for="description">الوصف</label>
+        <input
+          type="text"
+          class="form-control"
+          id="description"
+          [(ngModel)]="currentActivity.description"
+          name="description"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="description">العنوان</label>
+        <input
+          type="text"
+          class="form-control"
+          id="address"
+          [(ngModel)]="currentActivity.address"
+          name="address"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="description">المعرف البريدي</label>
+        <input
+          type="text"
+          class="form-control"
+          id="codePostal"
+          [(ngModel)]="currentActivity.codePostal"
+          name="codePostal"
+          minlength="4"
+          maxlength="4"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="description">الولاية</label>
+        <select
+          class="form-control"
+          id="governorate"
+          [(ngModel)]="currentActivity.governorate"
+          name="governorate">
+        <option *ngFor="let dl of listStates" [value]="dl" >
+          {{ dl }}
+        </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="description">المدينة</label>
+        <select
+          class="form-control"
+          id="ville"
+          [(ngModel)]="currentActivity.ville"
+          name="ville">
+          <option *ngFor="let st of listCities" [value]="st" >
+            {{ st }}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="description">المعرف الجبائي</label>
+        <input
+          type="text"
+          class="form-control"
+          id="codeFiscal"
+          [(ngModel)]="currentActivity.codeFiscal"
+          name="codeFiscal"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="description">صورة الرمز</label>
+        <input
+          type="text"
+          class="form-control"
+          id="photo"
+          [(ngModel)]="currentActivity.photo"
+          name="photo"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="description">البريد الإلكتروني</label>
+        <input
+          type="text"
+          class="form-control"
+          id="email"
+          [(ngModel)]="currentActivity.email"
+          name="email"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="description">الهاتف</label>
+        <input
+          type="text"
+          class="form-control"
+          id="numTel"
+          required
+          [(ngModel)]="currentActivity.numTel"
+          name="numTel"
+          maxlength="8"
+          minlength="8"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="description">موقع الواب</label>
+        <input
+          type="text"
+          class="form-control"
+          id="siteWeb"
+          [(ngModel)]="currentActivity.siteWeb"
+          name="siteWeb"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="description">عدد العملة</label>
+        <input
+          type="number"
+          class="form-control"
+          id="workerNumber"
+          required
+          [(ngModel)]="currentActivity.workerNumber"
+          name="workerNumber"/>
+      </div>
+
+      <div class="form-group">
+        <label for="description">القيمة</label>
+        <input
+          type="number"
+          class="form-control"
+          id="amount"
+          required
+          [(ngModel)]="currentActivity.amount"
+          name="amount"/>
+      </div>
+
+      <div class="form-group">
+        <label for="beneficiaryCin">معرف المنتفعة</label>
+        <select
+          class="form-control"
+          id="beneficiaryCin"
+          [(ngModel)]="currentActivity.beneficiaryCin"
+          name="beneficiaryCin">
+          <option *ngFor="let st of listBeneficiaryCins" [value]="st" >
+            {{ st }}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="dossierTitle">معرف الملف</label>
+        <select
+          class="form-control"
+          id="dossierTitle"
+          [(ngModel)]="currentActivity.dossierTitle"
+          name="dossierTitle">
+          <option *ngFor="let st of listDossierTitles" [value]="st" >
+            {{ st }}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label><strong>وضعية المشروع:</strong></label>
+        {{ currentActivity.published ? "إنطلق" : "في طور الإعداد" }}
+      </div>
+    </form>
+
+    <button
+      class="badge badge-primary mr-2"
+      *ngIf="currentActivity.published"
+      (click)="updateStarted(false)"
+    >
+      في طور الإعداد
+    </button>
+    <button
+      *ngIf="!currentActivity.published"
+      class="badge badge-primary mr-2"
+      (click)="updateStarted(true)"
+    >
+      أطلاق المشروع
+    </button>
+
+    <button class="badge badge-danger mr-2" (click)="deleteActivity()">
+      حذف
+    </button>
+
+    <button
+      type="submit"
+      class="badge badge-success mb-2"
+      (click)="updateActivity()"
+    >
+      تحديث
+    </button>
+
+  </div>
+
+  <div *ngIf="!currentActivity.id">
+    <br />
+    <p>لا يمكن الوصول للمشروع...</p>
+  </div>
+</div>
+</body>

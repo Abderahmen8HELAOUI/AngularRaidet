@@ -1,0 +1,169 @@
+<div class="list row">
+  <div class="col-md-8">
+    <div class="input-group mb-3">
+      <input style="max-width: 200px;"
+        type="text"
+        class="form-control"
+        placeholder="البحث باسم المترشحة"
+        [(ngModel)]="title"
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="searchTitle()">
+          البحث
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <pagination-controls
+      previousLabel="السابق"
+      nextLabel="التالي"
+      [responsive]="true"
+      (pageChange)="handlePageChange($event)"
+    ></pagination-controls>
+  </div>
+
+  <div class="col-md-12" style="width: auto;">
+    <h1 style="font-family: Amiri;text-align: center;">قائمة المترشحات</h1>
+
+    <table class="table"
+           width="100%"
+           border="1"
+           style="width: auto; text-align: center;"
+           id="excel-table">
+      <thead class="bg-warning">
+      <tr>
+        <th>الإسم و اللقب</th>
+        <th>العنوان</th>
+        <th>ب. ت. و</th>
+        <th>صورة المترشحة</th>
+        <th>البريد الإلكتروني</th>
+        <th>الهاتف</th>
+        <th>تاريخ الميلاد</th>
+        <th>معرف النشاط</th>
+        <th>معرف المستخدم</th>
+        <th>تاريخ التحديث</th>
+        <th>صنف الرائدة</th>
+        <th>رائدة ذات أولوية</th>
+
+      </tr>
+      </thead>
+      <tbody>
+      <tr (click)="setActiveBeneficiary(beneficiary, i)"
+          *ngFor="let beneficiary of beneficiaries| paginate : {
+             itemsPerPage: pageSize,
+             currentPage: page,
+             totalItems: count
+           };
+     let i = index"
+          [class.active]="i == currentIndex">
+
+        <td class="table-warning">{{beneficiary.title}}&nbsp;{{ beneficiary.lastname }} </td>
+        <td>{{beneficiary.address}}&nbsp;{{ beneficiary.codePostal}},&nbsp;{{ beneficiary.ville}},&nbsp;{{ beneficiary.governorate}}</td>
+        <td>{{beneficiary.cin}}</td>
+        <td>{{beneficiary.photo}}</td>
+        <td>{{beneficiary.mail}}</td>
+        <td>{{beneficiary.numTel}}</td>
+        <td>{{beneficiary.birthdate | date:'dd-MM-yyyy'}}
+        <td>{{beneficiary.activityTitle}}</td>
+        <td>{{beneficiary.userName}}</td>
+        <td>{{beneficiary.creationDate | date: 'dd-MM-yyyy'}}</td>
+        <td>{{beneficiary.leadingCategory}}</td>
+        <td>{{beneficiary.leadingSubCategory}}</td>
+
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+  <div class="col-md-8" >
+    <div *ngIf="currentBeneficiary.id">
+      <h1 style="font-family: Amiri;">المترشحة</h1>
+      <div>
+        <label><strong>الإسم:</strong></label>
+        {{ currentBeneficiary.title }}
+      </div>
+      <div>
+        <label><strong>اللقب:</strong></label>
+        {{ currentBeneficiary.lastname }}
+      </div>
+      <div>
+        <label><strong>العنوان:</strong></label>
+        {{ currentBeneficiary.address }}, {{ currentBeneficiary.ville }}, {{ currentBeneficiary.codePostal }},
+        {{ currentBeneficiary.governorate }}
+      </div>
+
+      <div>
+        <label><strong>ب. ت. و:</strong></label>
+
+        {{ currentBeneficiary.cin }}
+      </div>
+      <div>
+        <label><strong>صورة المترشحة:</strong></label>
+
+        <img src="http://localhost:8080/api/auth/files/{{ currentBeneficiary.photo }}"
+             alt="Smiley face"
+             >
+
+      </div>
+
+      <div>
+        <label><strong>العنوان الإلكتروني:</strong></label>
+        {{ currentBeneficiary.mail }}
+      </div>
+      <div>
+        <label><strong>الهاتف:</strong></label>
+        {{ currentBeneficiary.numTel }}
+      </div>
+
+      <div>
+        <label><strong>تاريخ الميلاد:</strong></label>
+        {{ currentBeneficiary.birthdate | date:'dd-MM-yyyy, h:mm' }}
+      </div>
+      <div>
+        <label><strong>معرف النشاط:</strong></label>
+        {{ currentBeneficiary.activityTitle }}
+      </div>
+
+      <div>
+        <label><strong>معرف المستخدم:</strong></label>
+        {{ currentBeneficiary.userName }}
+      </div>
+
+      <div>
+        <label><strong>تاريخ الإحداث:</strong></label>
+        {{ currentBeneficiary.creationDate | date: 'dd-MM-yyyy'  }}
+      </div>
+
+      <a class="badge badge-warning" routerLink="/Beneficiaries/{{ currentBeneficiary.id }}">
+        تحديث
+      </a>
+    </div>
+
+    <div *ngIf="!currentBeneficiary">
+      <br />
+      <p>فضلا, قم باختيار مترشحة...</p>
+    </div>
+  </div>
+
+  <div class="mt-3">
+    <button class="m-3 btn btn-sm btn-danger" (click)="removeAllBeneficiaries()">
+      حذف الكل
+    </button>
+
+    عدد الباعثات بالصفحة:
+    <select (change)="handlePageSizeChange($event)" style="max-width: 200px;">
+      <option *ngFor="let size of pageSizes" [ngValue]="size">
+        {{ size }}
+      </option>
+    </select>
+    <button (click)="exportExcel()"
+            class="m-3 btn btn-sm btn-success mb-2">Excel أنقل إلى </button>
+  </div>
+
+
+</div>

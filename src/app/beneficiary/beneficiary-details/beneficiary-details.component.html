@@ -1,0 +1,220 @@
+<body>
+<div>
+  <div *ngIf="currentBeneficiary.id" class="edit-form">
+    <h4>المترشحة</h4>
+
+    <form>
+      <div class="form-group">
+        <label for="title" style="color: #000000;">إسم المترشحة</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          title = "إسم المترشحة"
+          required
+          [(ngModel)]="currentBeneficiary.title"
+          name="title"
+
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="description"style="color: #000000;">لقب المترشحة</label>
+        <input
+          class="form-control"
+          id="description"
+          required
+          title="لقب المترشحة"
+          [(ngModel)]="currentBeneficiary.lastname"
+          name="description"
+
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="title"style="color: #000000;">تاريخ الميلاد</label>
+        <input
+          type="date"
+          class="form-control"
+          id="birthdate"
+          required
+          title = "تاريخ الميلاد"
+          placeholder="yyyy-mm-dd"
+          [(ngModel)]="currentBeneficiary.birthdate"
+          name="birthdate"
+
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="description"style="color: #000000;">بطاقة تعريف</label>
+        <input
+          class="form-control"
+          id="cin"
+          required
+          pattern="[0-9]{8}"
+          title="رقم ب. ت. و يجب أن يحتوي على 8 أرقام"
+          placeholder="01234567"
+          minlength="8"
+          maxlength="8"
+          [(ngModel)]="currentBeneficiary.cin"
+          name="cin"
+
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="description"style="color: #000000;">العنوان</label>
+        <input
+          class="form-control"
+          id="address"
+          required
+          title="العنوان"
+          [(ngModel)]="currentBeneficiary.address"
+          name="address"
+
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="description"style="color: #000000;">المعرف البريدي</label>
+        <input
+          class="form-control"
+          id="codePostal"
+          required
+          [(ngModel)]="currentBeneficiary.codePostal"
+          name="codePostal"
+          pattern="[0-9]{4}"
+          title="المعرف البريدي يجب أن يحتوي على 4 أرقام"
+          placeholder="1234"
+          minlength="4"
+          maxlength="4"
+
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="description"style="color: #000000;">الولاية</label>
+        <select
+          class="form-control"
+          id="governorate"
+          required
+          title="الولاية"
+          [(ngModel)]="currentBeneficiary.governorate"
+          name="governorate"
+          >
+          <option *ngFor="let dl of listStates" [value]="dl" >
+            {{ dl }}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="description"style="color: #000000;">المدينة</label>
+        <select
+          class="form-control"
+          id="ville"
+          required
+          title="المدينة"
+          [(ngModel)]="currentBeneficiary.ville"
+          name="ville"
+          >
+          <option *ngFor="let st of listCities" [value]="st" >
+            {{ st }}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="description"style="color: #000000;">صورة المترشحة</label>
+        <input
+          type="file"
+          class="form-control"
+          id="photo"
+          title = "صورة المترشحة"
+          [(ngModel)]="currentBeneficiary.photo"
+          name="photo"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="description"style="color: #000000;">البريد الإلكتروني</label>
+        <input
+          type="email"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+          title="البريد الإلكتروني يجب أن يحتوي على الصيغة التالية admin@gmail.com"
+          placeholder="admin@gmail.com"
+          class="form-control"
+          id="email"
+          [(ngModel)]="currentBeneficiary.mail"
+          name="email"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="description"style="color: #000000;">الهاتف</label>
+        <input
+          class="form-control"
+          id="numTel"
+          required
+          [(ngModel)]="currentBeneficiary.numTel"
+          name="numTel"
+          pattern="[1-9]{2} [0-9]{3} [0-9]{3}"
+          title="رقم الهاتف"
+          placeholder="12 345 678"
+          minlength="10"
+          maxlength="10"
+
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="description"style="color: #000000;">إسم المستخدم</label>
+        <select
+          class="form-control"
+          id="userName"
+          required
+          title="إسم المستخدم"
+          [(ngModel)]="currentBeneficiary.userName"
+          name="userName"
+          >
+          <option *ngFor="let un of listUserNames" [value]="un" >
+            {{ un }}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="description"style="color: #000000;">معرف النشاط</label>
+        <input
+          class="form-control"
+          title = "معرف النشاط"
+          id="idDossier"
+          [(ngModel)]="currentBeneficiary.activityTitle"
+          name="idDossier"
+        />
+      </div>
+
+
+    </form>
+
+    <button class="badge badge-danger mr-2" (click)="deleteBeneficiary()">
+      حذف
+    </button>
+
+    <button
+      type="submit"
+      class="badge badge-success mb-2"
+      (click)="updateBeneficiary()"
+    >
+      تحديث
+    </button>
+
+  </div>
+
+  <div *ngIf="!currentBeneficiary.id">
+    <br />
+    <p>لا يمكن الوصول للمترشحة...</p>
+  </div>
+</div>
+</body>

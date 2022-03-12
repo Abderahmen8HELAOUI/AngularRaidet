@@ -1,0 +1,63 @@
+<div>
+  <div class="submit-form">
+    <div *ngIf="!submitted">
+      <div class="form-group">
+        <label for="title">إسم الوثيقة</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          required
+          [(ngModel)]="document.title"
+          name="title"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="description">الوصف</label>
+        <input
+          type="text"
+          class="form-control"
+          id="description"
+          required
+          [(ngModel)]="document.description"
+          name="description"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="photo">صورة الوثيقة</label>
+        <input
+          type="text"
+          class="form-control"
+          id="photo"
+          required
+          [(ngModel)]="document.photo"
+          name="photo"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="dossierTitle">معرف الملف</label>
+        <select
+          class="form-control"
+          id="dossierTitle"
+          required
+          [(ngModel)]="document.dossierTitle"
+          name="dossierTitle"
+          #dossierTitle="ngModel"
+          [class.invalid]="dossierTitle.invalid && dossierTitle.touched">
+          <option *ngFor="let st of listDossierTitles" [value]="st" >
+            {{ st }}
+          </option>
+        </select>
+      </div>
+
+      <button (click)="saveDocument()" class="btn btn-success">حفظ</button>
+    </div>
+
+    <div *ngIf="submitted">
+      <button class="btn btn-success" (click)="newDocument()">إضافة وثيقة أخرى</button>
+    </div>
+  </div>
+</div>

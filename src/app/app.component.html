@@ -1,0 +1,94 @@
+
+<body>
+<div id="app">
+  <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <a href="#" class="navbar-brand" style="color:orange;font-size: 30px">منظومة رائدات</a>
+    <ul class="navbar-nav mr-auto" routerLinkActive="active">
+      <li class="nav-item">
+        <a href="/home" class="nav-link" routerLink="home">الرئيسية </a>
+      </li>
+      <li class="nav-item" *ngIf="showAdminBoard">
+        <a href="/admin" class="nav-link" routerLink="admin">الواجهة الرئيسية للمشرف العام</a>
+      </li>
+      <li class="nav-item" *ngIf="showAdminBoard">
+        <a routerLink="activities" class="nav-link">قائمة الأنشطة</a>
+      </li>
+      <li class="nav-item" *ngIf="showAdminBoard">
+        <a routerLink="Beneficiaries" class="nav-link"> قائمة المترشحات</a>
+      </li>
+      <li class="nav-item" *ngIf="showAdminBoard">
+        <a routerLink="dossiers" class="nav-link">قائمة الملفات</a>
+      </li>
+      <li class="nav-item" *ngIf="showAdminBoard">
+        <a routerLink="documents" class="nav-link">قائمة الوثائق</a>
+      </li>
+      <li class="nav-item" *ngIf="showAdminBoard">
+        <a routerLink="addActivity" class="nav-link">أضافة نشاط</a>
+      </li>
+      <li class="nav-item" *ngIf="showAdminBoard">
+        <a routerLink="addBeneficiary" class="nav-link">أضافة مترشحة</a>
+      </li>
+      <li class="nav-item" *ngIf="showAdminBoard">
+        <a routerLink="addDossiers" class="nav-link">أضافة ملف</a>
+      </li>
+
+      <li class="nav-item" *ngIf="showAdminBoard">
+        <a routerLink="addDocument" class="nav-link">أضافة وثيقة</a>
+      </li>
+
+      <li class="nav-item" *ngIf="showModeratorBoard">
+        <a href="/mod" class="nav-link" routerLink="mod">واجهة المشرف الجهوي</a>
+      </li>
+      <li class="nav-item">
+        <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">واجهة الباعثة</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+      <li class="nav-item">
+        <a href="/register" class="nav-link" routerLink="register">التسجيل</a>
+      </li>
+      <li class="nav-item">
+        <a href="/login" class="nav-link" routerLink="login">الدخول</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+      <li class="nav-item">
+        <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
+      </li>
+      <li class="nav-item">
+        <a href class="nav-link" (click)="logout()">الخروج</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+<!--<div class="container">-->
+<!--  <select (change)="onSelect($event)">-->
+<!--    <option>Select State</option>-->
+<!--    <option *ngFor="let-->
+<!--        states of state"-->
+<!--            value="{{states.name}}">-->
+<!--      {{states.name}}-->
+<!--    </option>-->
+<!--  </select>-->
+
+<!--  <select>-->
+<!--    <option>Select City</option>-->
+<!--    <option *ngFor="let cities of-->
+<!--     city">{{cities.name}}</option>-->
+<!--  </select>-->
+<!--</div>-->
+<footer>
+  <ul>
+    <li><a href="#">About Us</a></li>
+    <li><a href="#">Contact Us</a></li>
+    <li><a href="#">Help</a></li>
+  </ul>
+</footer>
+</body>
+

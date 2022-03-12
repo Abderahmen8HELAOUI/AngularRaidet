@@ -1,0 +1,60 @@
+<div>
+  <div class="submit-form">
+    <div *ngIf="!submitted">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          required
+          [(ngModel)]="dossier.title"
+          name="title"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="statusDossier">statusDossier</label>
+        <select name="statusDossier"
+                id="statusDossier"
+                class="form-control"
+                required
+                [(ngModel)]="dossier.statusDossier">
+          <option value="قيد الدرس">قيد الدرس</option>
+          <option value="مقبول">مقبول</option>
+          <option value="مرفوض">مرفوض</option>
+
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="documentNumber">documentNumber</label>
+        <input
+          type="text"
+          class="form-control"
+          id="documentNumber"
+          required
+          [(ngModel)]="dossier.documentNumber"
+          name="title"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="activityTitle">activityTitle</label>
+        <input
+          class="form-control"
+          id="activityTitle"
+          required
+          [(ngModel)]="dossier.activityTitle"
+          name="description"
+        />
+      </div>
+
+      <button (click)="saveDossier()" class="btn btn-success">Submit</button>
+    </div>
+
+    <div *ngIf="submitted">
+      <button class="btn btn-success" (click)="newDossier()">Add</button>
+    </div>
+  </div>
+</div>

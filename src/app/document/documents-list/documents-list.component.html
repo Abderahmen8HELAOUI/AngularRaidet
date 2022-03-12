@@ -1,0 +1,125 @@
+<div class="list row">
+  <div class="col-md-8">
+    <div class="input-group mb-3">
+      <input style="max-width: 200px;"
+             type="text"
+             class="form-control"
+             placeholder="البحث باسم الوثيقة"
+             [(ngModel)]="title"
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="searchTitle()">
+          البحث
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <pagination-controls
+      previousLabel="السابق"
+      nextLabel="التالي"
+      [responsive]="true"
+      (pageChange)="handlePageChange($event)"
+    ></pagination-controls>
+  </div>
+
+  <div class="col-md-12">
+    <h1 style="font-family: Amiri;text-align: center;">قائمة الوثائق</h1>
+
+    <table class="table">
+      <thead class="thead-light"
+             id="excel-table">
+      <tr>
+        <th>المعرف</th>
+        <th>الإسم</th>
+        <th>الوصف</th>
+        <th>صورة الوثيقة</th>
+        <th>معرف الملف</th>
+        <th>القبول</th>
+        <th>تاريخ الإضافة</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr (click)="setActiveActivity(activity, i)"
+          *ngFor="let activity of documents| paginate : {
+             itemsPerPage: pageSize,
+             currentPage: page,
+             totalItems: count
+           };
+     let i = index"
+          [class.active]="i == currentIndex">
+        <td>{{activity.id}}</td>
+        <td>{{activity.title}}</td>
+        <td>{{activity.description}}</td>
+        <td>{{activity.photo}}</td>
+        <td>{{activity.dossierTitle}}</td>
+        <td>{{activity.published}}</td>
+        <td>{{activity.creationDate | date:'dd-MM-yyyy, h:mm'}}</td>
+
+      </tr>
+      </tbody>
+    </table>
+
+
+  </div>
+  <div class="col-md-8">
+    <div *ngIf="currentDocument.id">
+      <h4>الوثيقة</h4>
+      <div>
+        <label><strong>الإسم:</strong></label>
+        {{ currentDocument.title }}
+      </div>
+      <div>
+        <label><strong>التعريف:</strong></label>
+        {{ currentDocument.description }}
+      </div>
+      <div>
+        <label><strong>صورة الوثيقة:</strong></label>
+        {{ currentDocument.photo }}
+      </div>
+      <div>
+        <label><strong>معرف الملف:</strong></label>
+        {{ currentDocument.dossierTitle }}
+      </div>
+
+      <div>
+        <label><strong>وضعية الوثيقة:</strong></label>
+        {{ currentDocument.published ? "معتدة" : "في طور الفحص" }}
+      </div>
+
+      <div>
+        <label><strong>تاريخ التضمين:</strong></label>
+        {{ currentDocument.creationDate | date:'dd-MM-yyyy, h:mm' }}
+      </div>
+
+      <a class="badge badge-warning" routerLink="/documents/{{ currentDocument.id }}">
+        تحديث
+      </a>
+    </div>
+
+    <div *ngIf="!currentDocument">
+      <br />
+      <p>فضلا, قم باختيار وثيقة...</p>
+    </div>
+  </div>
+
+  <div class="mt-3">
+    <button (click)="removeAllDocuments()" class="m-3 btn btn-sm btn-danger">
+      حذف الكل
+    </button>
+
+    عدد الوثائق بالصفحة:
+    <select (change)="handlePageSizeChange($event)">
+      <option *ngFor="let size of pageSizes" [ngValue]="size">
+        {{ size }}
+      </option>
+    </select>
+    <button (click)="exportExcel()"
+            class="m-3 btn btn-sm btn-success mb-2">Excel أنقل إلى </button>
+  </div>
+</div>
+
