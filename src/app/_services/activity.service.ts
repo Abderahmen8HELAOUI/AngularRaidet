@@ -16,10 +16,10 @@ const citiesUrl = `${environment.API_URI}/citiesNames`;
 })
 export class ActivityService {
 
-  private statesUrl = 'https://gestion-raidet.herokuapp.com/api/stateNames';
-  private activityUrl = 'https://gestion-raidet.herokuapp.com/api/activityTitles';
-  private beneficiaryCinUrl = 'https://gestion-raidet.herokuapp.com/api/beneficiaryCins';
-  private dossierTitleUrl = 'https://gestion-raidet.herokuapp.com/api/dossierTitles';
+  private statesUrl = `${environment.API_URI}/stateNames`;
+  private activityUrl = `${environment.API_URI}/activityTitles`;
+  private beneficiaryCinUrl = `${environment.API_URI}/beneficiaryCins`;
+  private dossierTitleUrl = `${environment.API_URI}/dossierTitles`;
 
 
   constructor(private http: HttpClient) { }
