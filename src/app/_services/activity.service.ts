@@ -6,9 +6,10 @@ import {State} from "../models/state.model";
 import {City} from "../models/city.model";
 import {Beneficiary} from "../models/beneficiary.model";
 import {Dossier} from "../models/dossier.model";
+import {environment} from "../../environments/environment";
 
-const baseUrl = 'https://gestion-raidet.herokuapp.com/api/activities';
-const citiesUrl = 'https://gestion-raidet.herokuapp.com/api/citiesNames';
+const baseUrl = `${environment.API_URI}/activities`;
+const citiesUrl = `${environment.API_URI}/citiesNames`;
 
 @Injectable({
   providedIn: 'root'
