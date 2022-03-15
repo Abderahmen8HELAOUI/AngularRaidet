@@ -7,18 +7,18 @@ import {City} from "../models/city.model";
 import {Beneficiary} from "../models/beneficiary.model";
 import {Dossier} from "../models/dossier.model";
 
-const baseUrl = 'http://localhost:8080/api/activities';
-const citiesUrl = 'http://localhost:8080/api/citiesNames';
+const baseUrl = 'https://gestion-raidet.herokuapp.com/api/activities';
+const citiesUrl = 'https://gestion-raidet.herokuapp.com/api/citiesNames';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ActivityService {
 
-  private statesUrl = '//localhost:8080/api/stateNames';
-  private activityUrl = 'http://localhost:8080/api/activityTitles';
-  private beneficiaryCinUrl = 'http://localhost:8080/api/beneficiaryCins';
-  private dossierTitleUrl = 'http://localhost:8080/api/dossierTitles';
+  private statesUrl = 'https://gestion-raidet.herokuapp.com/api/stateNames';
+  private activityUrl = 'https://gestion-raidet.herokuapp.com/api/activityTitles';
+  private beneficiaryCinUrl = 'https://gestion-raidet.herokuapp.com/api/beneficiaryCins';
+  private dossierTitleUrl = 'https://gestion-raidet.herokuapp.com/api/dossierTitles';
 
 
   constructor(private http: HttpClient) { }

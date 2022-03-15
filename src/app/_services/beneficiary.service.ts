@@ -6,15 +6,15 @@ import {File} from "../models/file.model";
 import {User} from "../models/user.model";
 
 
-const baseUrl = 'http://localhost:8080/api/beneficiaries';
-const baseFileUrl = 'http://localhost:8080/upload';
+const baseUrl = 'https://gestion-raidet.herokuapp.com/api/beneficiaries';
+const baseFileUrl = 'https://gestion-raidet.herokuapp.com/upload';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BeneficiaryService {
 
-  public photoUrl = 'http://localhost:8080/uploads/';
+  public photoUrl = 'https://gestion-raidet.herokuapp.com/uploads/';
 
   constructor(private http: HttpClient) { }
 

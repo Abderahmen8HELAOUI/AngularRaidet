@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Dossier} from "../models/dossier.model";
 
-const baseUrl = 'http://localhost:8080/api/dossiers';
+const baseUrl = 'https://gestion-raidet.herokuapp.com/api/dossiers';
 
 @Injectable({
   providedIn: 'root'
