@@ -6,20 +6,19 @@ import {State} from "../models/state.model";
 import {City} from "../models/city.model";
 import {Beneficiary} from "../models/beneficiary.model";
 import {Dossier} from "../models/dossier.model";
-import {environment} from "../../environments/environment";
 
-const baseUrl = `${environment.API_URI}/activities`;
-const citiesUrl = `${environment.API_URI}/citiesNames`;
+const baseUrl = 'https://gestion-raidet.herokuapp.com/api/activities';
+const citiesUrl = 'https://gestion-raidet.herokuapp.com/api/citiesNames';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ActivityService {
 
-  private statesUrl = `${environment.API_URI}/stateNames`;
-  private activityUrl = `${environment.API_URI}/activityTitles`;
-  private beneficiaryCinUrl = `${environment.API_URI}/beneficiaryCins`;
-  private dossierTitleUrl = `${environment.API_URI}/dossierTitles`;
+  private statesUrl = 'https://gestion-raidet.herokuapp.com/api/stateNames';
+  private activityUrl = 'https://gestion-raidet.herokuapp.com/api/activityTitles';
+  private beneficiaryCinUrl = 'https://gestion-raidet.herokuapp.com/api/beneficiaryCins';
+  private dossierTitleUrl = 'https://gestion-raidet.herokuapp.com/api/dossierTitles';
 
 
   constructor(private http: HttpClient) { }

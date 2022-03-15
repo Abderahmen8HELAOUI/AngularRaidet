@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Dossier} from "../models/dossier.model";
-import {environment} from "../../environments/environment";
 
-const baseUrl = `${environment.API_URI}dossiers`;
+const baseUrl = 'https://gestion-raidet.herokuapp.com/api/dossiers';
 
 @Injectable({
   providedIn: 'root'

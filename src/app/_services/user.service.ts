@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {environment} from "../../environments/environment";
 
-const API_URL = `${environment.API_URI}/test/`;
+const API_URL = 'https://gestion-raidet.herokuapp.com/api/test/';
 
 @Injectable({
   providedIn: 'root'

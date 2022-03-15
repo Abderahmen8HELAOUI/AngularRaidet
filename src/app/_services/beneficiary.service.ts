@@ -4,18 +4,17 @@ import {Observable} from "rxjs";
 import {Beneficiary} from "../models/beneficiary.model";
 import {File} from "../models/file.model";
 import {User} from "../models/user.model";
-import {environment} from "../../environments/environment";
 
 
-const baseUrl = `${environment.API_URI}/beneficiaries`;
-const baseFileUrl = `${environment.API_URI}/upload` ;
+const baseUrl = 'https://gestion-raidet.herokuapp.com/api/beneficiaries';
+const baseFileUrl = 'https://gestion-raidet.herokuapp.com/upload';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BeneficiaryService {
 
-  public photoUrl = `${environment.API_URI}uploads/`;
+  public photoUrl = 'https://gestion-raidet.herokuapp.com/uploads/';
 
   constructor(private http: HttpClient) { }
 
