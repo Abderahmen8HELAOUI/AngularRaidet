@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {Beneficiary} from "../models/beneficiary.model";
 import {File} from "../models/file.model";
 import {User} from "../models/user.model";
+import {environment} from "../../environments/environment";
 
 
 const baseUrl = 'https://gestion-raidet.herokuapp.com/api/beneficiaries';
@@ -14,32 +15,33 @@ const baseFileUrl = 'https://gestion-raidet.herokuapp.com/upload';
 })
 export class BeneficiaryService {
 
+  baseUrl = environment.baseUrl;
   public photoUrl = 'https://gestion-raidet.herokuapp.com/uploads/';
 
   constructor(private http: HttpClient) { }
 
   getAll(params: any): Observable<any> {
-    return this.http.get<any>(baseUrl, { params });
+    return this.http.get<any>(this.baseUrl + 'api/beneficiaries', { params });
   }
 
   get(id: any): Observable<Beneficiary> {
-    return this.http.get(`${baseUrl}/${id}`);
+    return this.http.get(this.baseUrl + 'api/beneficiaries' + id);
   }
 
   create(data: any): Observable<any> {
-    return this.http.post(baseUrl, data);
+    return this.http.post(this.baseUrl + 'api/beneficiaries', data);
   }
 
   update(id: any, data: any): Observable<any> {
-    return this.http.put(`${baseUrl}/${id}`, data);
+    return this.http.put(this.baseUrl + 'api/beneficiaries' + id, data);
   }
 
   delete(id: any): Observable<any> {
-    return this.http.delete(`${baseUrl}/${id}`);
+    return this.http.delete(this.baseUrl + 'api/beneficiaries' + id);
   }
 
   deleteAll(): Observable<any> {
-    return this.http.delete(baseUrl);
+    return this.http.delete(this.baseUrl + 'api/beneficiaries');
   }
 
   findByTitle(title: any): Observable<Beneficiary[]> {
@@ -47,7 +49,7 @@ export class BeneficiaryService {
   }
 
   getDropDownUserNames(): Observable<any>{
-    return this.http.get<User[]>(`${baseUrl}/userNames`);
+    return this.http.get<User[]>(this.baseUrl + 'api/beneficiaries/userNames');
   }
 
   UploadPhoto(val:any){
@@ -59,6 +61,6 @@ export class BeneficiaryService {
   }
 
   getBeneficiaryNumber(){
-    return this.http.get(`${baseUrl}/beneficiariesNumber`);
+    return this.http.get(this.baseUrl + 'api/beneficiaries/beneficiariesNumber');
   }
 }

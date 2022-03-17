@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {environment} from "../../environments/environment";
 
 const API_URL = 'https://gestion-raidet.herokuapp.com/api/test/';
 
@@ -8,21 +9,24 @@ const API_URL = 'https://gestion-raidet.herokuapp.com/api/test/';
   providedIn: 'root'
 })
 export class UserService {
+
+  baseUrl = environment.baseUrl;
+
   constructor(private http: HttpClient) { }
 
   getPublicContent(): Observable<any> {
-    return this.http.get(API_URL + 'all', { responseType: 'text' });
+    return this.http.get(this.baseUrl + 'api/test/all', { responseType: 'text' });
   }
 
   getUserBoard(): Observable<any> {
-    return this.http.get(API_URL + 'user', { responseType: 'text' });
+    return this.http.get(this.baseUrl + 'api/test/user', { responseType: 'text' });
   }
 
   getModeratorBoard(): Observable<any> {
-    return this.http.get(API_URL + 'mod', { responseType: 'text' });
+    return this.http.get(this.baseUrl + 'api/test/mod', { responseType: 'text' });
   }
 
   getAdminBoard(): Observable<any> {
-    return this.http.get(API_URL + 'admin', { responseType: 'text' });
+    return this.http.get(this.baseUrl + 'api/test/admin', { responseType: 'text' });
   }
 }
