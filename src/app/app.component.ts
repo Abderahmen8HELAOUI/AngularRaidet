@@ -20,6 +20,7 @@ export class AppComponent {
   showAdminBoard = false;
   showModeratorBoard = false;
   username?: string;
+  regionalCommissary?: string;
   title = 'Angular Material 12 Image Upload with Preview';
 
   constructor(private tokenStorageService: TokenStorageService,
@@ -36,6 +37,7 @@ export class AppComponent {
       this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
 
       this.username = user.username;
+      this.regionalCommissary = user.regionalCommissary;
     }
     this.state = this.authService.state();
   }

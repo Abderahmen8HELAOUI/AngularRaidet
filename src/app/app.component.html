@@ -1,6 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: "Lato", sans-serif;
+    }
 
+    .sidenav {
+      height: 100%;
+      width: 160px;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: #111;
+      overflow-x: hidden;
+      padding-top: 20px;
+    }
+
+    .sidenav a {
+      padding: 6px 8px 6px 16px;
+      text-decoration: none;
+      font-size: 20px;
+      color: orange;
+      display: block;
+    }
+
+    .sidenav a:hover {
+      color: #f1f1f1;
+    }
+
+    .main {
+      margin-left: 160px; /* Same as the width of the sidenav */
+      font-size: 20px; /* Increased text to enable scrolling */
+      padding: 0px 0px;
+    }
+
+    @media screen and (max-height: 450px) {
+      .sidenav {padding-top: 15px;}
+      .sidenav a {font-size: 18px;}
+    }
+  </style>
+</head>
 <body>
-<div id="app">
+<div class="sidenav">
+  <a href="#about">من نحن</a>
+  <a routerLink="activities" class="nav-link" *ngIf="showAdminBoard">قائمة الأنشطة</a>
+  <a routerLink="Beneficiaries" class="nav-link" *ngIf="showAdminBoard"> قائمة المترشحات</a>
+  <a routerLink="dossiers" class="nav-link" *ngIf="showAdminBoard">قائمة الملفات</a>
+  <a routerLink="documents" class="nav-link" *ngIf="showAdminBoard">قائمة الوثائق</a>
+  <a routerLink="addActivity" class="nav-link" *ngIf="showAdminBoard">أضافة نشاط</a>
+  <a routerLink="addBeneficiary" class="nav-link" *ngIf="showAdminBoard">أضافة مترشحة</a>
+  <a routerLink="addDossiers" class="nav-link" *ngIf="showAdminBoard">أضافة ملف</a>
+  <a routerLink="addDocument" class="nav-link" *ngIf="showAdminBoard">أضافة وثيقة</a>
+
+</div>
+
+<div class="main">
   <nav class="navbar navbar-expand navbar-dark bg-dark">
     <a href="#" class="navbar-brand" style="color:orange;font-size: 30px">منظومة رائدات</a>
     <ul class="navbar-nav mr-auto" routerLinkActive="active">
@@ -10,37 +67,13 @@
       <li class="nav-item" *ngIf="showAdminBoard">
         <a href="/admin" class="nav-link" routerLink="admin">الواجهة الرئيسية للمشرف العام</a>
       </li>
-      <li class="nav-item" *ngIf="showAdminBoard">
-        <a routerLink="activities" class="nav-link">قائمة الأنشطة</a>
-      </li>
-      <li class="nav-item" *ngIf="showAdminBoard">
-        <a routerLink="Beneficiaries" class="nav-link"> قائمة المترشحات</a>
-      </li>
-      <li class="nav-item" *ngIf="showAdminBoard">
-        <a routerLink="dossiers" class="nav-link">قائمة الملفات</a>
-      </li>
-      <li class="nav-item" *ngIf="showAdminBoard">
-        <a routerLink="documents" class="nav-link">قائمة الوثائق</a>
-      </li>
-      <li class="nav-item" *ngIf="showAdminBoard">
-        <a routerLink="addActivity" class="nav-link">أضافة نشاط</a>
-      </li>
-      <li class="nav-item" *ngIf="showAdminBoard">
-        <a routerLink="addBeneficiary" class="nav-link">أضافة مترشحة</a>
-      </li>
-      <li class="nav-item" *ngIf="showAdminBoard">
-        <a routerLink="addDossiers" class="nav-link">أضافة ملف</a>
-      </li>
 
-      <li class="nav-item" *ngIf="showAdminBoard">
-        <a routerLink="addDocument" class="nav-link">أضافة وثيقة</a>
-      </li>
 
       <li class="nav-item" *ngIf="showModeratorBoard">
         <a href="/mod" class="nav-link" routerLink="mod">واجهة المشرف الجهوي</a>
       </li>
       <li class="nav-item">
-        <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">واجهة الباعثة</a>
+        <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">واجهة المستخدم</a>
       </li>
     </ul>
 
@@ -56,6 +89,9 @@
     <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
       <li class="nav-item">
         <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
+      </li>
+      <li class="nav-item">
+        <a href="/profile" class="nav-link" routerLink="profile">{{ regionalCommissary }}</a>
       </li>
       <li class="nav-item">
         <a href class="nav-link" (click)="logout()">الخروج</a>

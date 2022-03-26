@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {environment} from "../../environments/environment";
 
-//const AUTH_API = 'https://gestion-raidet.herokuapp.com/api/auth/';
+const AUTH_API = 'http://localhost:8080/api/auth/';
 
 const httpOptions = {
 
@@ -14,21 +14,22 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
-  baseUrl = environment.baseUrl;
+  //baseUrl = environment.baseUrl;
   constructor(private http: HttpClient) { }
 
   login(username: string, password: string): Observable<any> {
-    return this.http.post(this.baseUrl + 'api/auth/signin', {
+    return this.http.post(AUTH_API + 'signin', {
       username,
       password
     }, httpOptions);
   }
 
-  register(username: string, email: string, password: string): Observable<any> {
-    return this.http.post(this.baseUrl + 'api/auth/signup', {
+  register(username: string, email: string, password: string, regionalCommissary: string): Observable<any> {
+    return this.http.post(AUTH_API + 'signup', {
       username,
       email,
-      password
+      password,
+      regionalCommissary,
     }, httpOptions);
   }
 

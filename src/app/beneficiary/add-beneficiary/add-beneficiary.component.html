@@ -15,12 +15,6 @@
                   required
                   #leadingCategory="ngModel"
                   [(ngModel)]="beneficiary.leadingCategory">
-<!--            <option value="رائدة ذات أولوية">رائدة ذات أولوية</option>-->
-<!--            <option value="رائدة سلاسل القيمة">رائدة سلاسل القيمة</option>-->
-<!--            <option value="رائدة متضامنات">رائدة متضامنات</option>-->
-<!--            <option value="رائدة مساندة">رائدة مساندة</option>-->
-<!--            <option value="رائدة تطوير">رائدة تطوير</option>-->
-<!--            <option value="رائدة إبتكار">رائدة إبتكار</option>-->
             <option>--Choose Country--</option>
             <option *ngFor="let leadingCategory of leadingCategories">{{leadingCategory.name}}</option>
           </select>
@@ -35,10 +29,6 @@
                   #leadingSubCategory="ngModel"
                   [class.invalid]="leadingSubCategory.invalid && leadingSubCategory.touched"
                   [(ngModel)]="beneficiary.leadingSubCategory">
-<!--            <option value="إمرأة معنفة">إمرأة معنفة</option>-->
-<!--            <option value="إمرأة عزباء">إمرأة عزباء</option>-->
-<!--            <option value="وضعية إجتماعية خصوصية">وضعية إجتماعية خصوصية</option>-->
-<!--            <option value="خريجة سجون">خريجة سجون</option>-->
             <option>--Choose State--</option>
             <option *ngFor="let leadingSubCategory of leadingSubCategories">{{leadingSubCategory.name}}</option>
           </select>
@@ -83,6 +73,7 @@
             title = "تاريخ الميلاد"
             placeholder="yyyy-mm-dd"
             [(ngModel)]="beneficiary.birthdate"
+            min="1962-01-01" max="2004-01-01"
             name="birthdate"
             #birthdate="ngModel"
             [class.invalid]="birthdate.invalid && birthdate.touched"
@@ -291,7 +282,7 @@
           <select
             class="form-control"
             id="activityTitle"
-            required
+
             title="معرف النشاط"
             [(ngModel)]="beneficiary.activityTitle"
             name="activityTitle"
