@@ -7,7 +7,7 @@ import {environment} from "../../environments/environment";
   providedIn: 'root'
 })
 export class FileUploadService {
-  //private baseUrl = 'https://gestion-raidet.herokuapp.com';
+  //private baseUrl = 'http://localhost:8080/api';
 
   baseUrl = environment.baseUrl;
 

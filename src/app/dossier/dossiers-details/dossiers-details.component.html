@@ -1,1 +1,114 @@
-<p>dossiers-details works!</p>
+<div *ngIf="viewMode; else editable"  >
+  <div *ngIf="currentDossier.id" class="edit-form">
+    <h1 style="font-family: 'Amiri Quran'">الملف</h1>
+    <div>
+      <label><strong>إسم الملف:</strong></label> {{ currentDossier.title }}
+    </div>
+    <div>
+      <label><strong>تاريخ الإدراج:</strong></label>
+      {{ currentDossier.creationDate | date:'dd-MM-yyyy'}}
+    </div>
+    <div>
+      <label><strong>وضعية الملف:</strong></label>
+      {{ currentDossier.published ? "مقبول" : "في طور الدرس" }}
+    </div>
+
+    <a
+      class="badge badge-warning"
+      routerLink="/tutorials/{{ currentDossier.id }}"
+    >
+      تحديث
+    </a>
+  </div>
+
+  <div *ngIf="!currentDossier">
+    <br />
+    <p>Please click on a Dossier...</p>
+  </div>
+</div>
+
+<ng-template #editable>
+  <div *ngIf="currentDossier.id" class="edit-form">
+    <h1 style="font-family: 'Amiri Quran'">الملف</h1>
+    <form>
+      <div class="form-group">
+        <label for="title">إسم الملف</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          [(ngModel)]="currentDossier.title"
+          name="title"
+        />
+      </div>
+      <div class="form-group">
+        <label for="creationDate">تاريخ الإدراج</label>
+        <input
+          type="text"
+          class="form-control"
+          id="creationDate"
+          [(ngModel)]="currentDossier.creationDate"
+          name="creationDate"
+        />
+      </div>
+      <div class="form-group">
+        <label for="documentNumber">إسم الملف</label>
+        <input
+          type="text"
+          class="form-control"
+          id="documentNumber"
+          [(ngModel)]="currentDossier.documentNumber"
+          name="documentNumber"
+        />
+      </div>
+      <div class="form-group">
+        <label for="activityTitle">تاريخ الإدراج</label>
+        <input
+          type="text"
+          class="form-control"
+          id="activityTitle"
+          [(ngModel)]="currentDossier.activityTitle"
+          name="activityTitle"
+        />
+      </div>
+
+      <div class="form-group">
+        <label><strong>وضعية الملف:</strong></label>
+        {{ currentDossier.published ? "مقبول" : "في طور الدرس" }}
+      </div>
+    </form>
+
+    <button
+      class="badge badge-primary mr-2"
+      *ngIf="currentDossier.published"
+      (click)="updatePublished(false)"
+    >
+      في طور الدرس
+    </button>
+    <button
+      *ngIf="!currentDossier.published"
+      class="badge badge-primary mr-2"
+      (click)="updatePublished(true)"
+    >
+      قبول
+    </button>
+
+    <button class="badge badge-danger mr-2" (click)="deleteTutorial()">
+      حذف
+    </button>
+
+    <button
+      type="submit"
+      class="badge badge-success mb-2"
+      (click)="updateTutorial()"
+    >
+      تحديث
+    </button>
+    <p>{{ message }}</p>
+  </div>
+
+  <div *ngIf="!currentDossier.id">
+    <br />
+    <p>لا يمكن الوصول للملف...</p>
+  </div>
+</ng-template>

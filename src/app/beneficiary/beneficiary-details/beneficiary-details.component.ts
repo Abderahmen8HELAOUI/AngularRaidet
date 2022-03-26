@@ -12,12 +12,12 @@ import {ToastrService} from "ngx-toastr";
 })
 export class BeneficiaryDetailsComponent implements OnInit {
   currentBeneficiary: Beneficiary = {
-    title: '',
+    firstName: '',
     lastname: '',
 
     cin: '',
     birthdate: '',
-
+    academicLevel: '',
     address: '',
     ville: '',
     codePostal: '',
@@ -33,6 +33,7 @@ export class BeneficiaryDetailsComponent implements OnInit {
   public listStates: Array<string> = [];
   public listCities: Array<string> = [];
   public listUserNames: Array<string> = [];
+  public listActivityTitles: Array<string> = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -44,14 +45,13 @@ export class BeneficiaryDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getBeneficiary(this.route.snapshot.params.id);
-    this.dropdownStatesRefresh();
-    this.dropdownCitiesRefresh();
     this.dropdownUserNamesRefresh();
+    this.dropdownActivityTitlesRefresh();
   }
 
-  dropdownCitiesRefresh(){
-    this.activityService.getDropDownCities().subscribe(data=>{
-      this.listCities = data;
+  dropdownActivityTitlesRefresh(){
+    this.activityService.getDropDownActivityTitles().subscribe(data=>{
+      this.listActivityTitles = data;
       console.log(data);
 
     })
@@ -60,14 +60,6 @@ export class BeneficiaryDetailsComponent implements OnInit {
   dropdownUserNamesRefresh(){
     this.beneficiaryService.getDropDownUserNames().subscribe(data=>{
       this.listUserNames = data;
-      console.log(data);
-
-    })
-  }
-
-  dropdownStatesRefresh(){
-    this.activityService.getDropDownStates().subscribe(data=>{
-      this.listStates = data;
       console.log(data);
 
     })

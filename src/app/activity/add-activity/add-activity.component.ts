@@ -13,6 +13,72 @@ import {AuthService} from "../../_services/auth.service";
 })
 export class AddActivityComponent implements OnInit {
 
+  selectedCountry: String = "--Choose Country--";
+  Countries: Array<any> = [
+    { name: 'زغوان', states: [{name: 'زغوان', cities: ['زغوان المدينة', 'زغوان الشمالية', 'زغوان الجنوبية']},
+        {name: 'الزريبة', cities: ['زغوان المدينة', 'زغوان الشمالية', 'زغوان الجنوبية']},
+        {name: 'بئر مشارقة', cities: ['زغوان المدينة', 'زغوان الشمالية', 'زغوان الجنوبية']},
+        {name: 'الفحص', cities: ['زغوان المدينة', 'زغوان الشمالية', 'زغوان الجنوبية']},
+        {name: 'الناظور', cities: ['زغوان المدينة', 'زغوان الشمالية', 'زغوان الجنوبية']},
+        {name: 'صواف', cities: ['زغوان المدينة', 'زغوان الشمالية', 'زغوان الجنوبية']},
+
+      ] },
+    { name: 'سوسة', states: [ {name: 'سوسة المدينة', cities: ['بوجعفر']},
+        {name: 'الزاوية القصيبة الثريات', cities: ['زاوية سوسة']},
+        {name: 'سوسة الرياض', cities: ['الزهور']},
+        {name: 'سوسة جوهرة', cities: ['وادي بليبان']},
+        {name: 'سوسة سيدي عبد الحميد ', cities: ['الطيب المهيري']},
+        {name: 'حمام سوسة', cities: ['المدينة']},
+        {name: 'أكودة', cities: ['أكودة الشرقية']},
+        {name: 'القلعة الكبرى', cities: ['الجرابعة']},
+        {name: 'سيدي بوعلية', cities: ['سيدي بوعلي']},
+        {name: 'هرقلة', cities: ['هرقلة']},
+        {name: 'النفيضة', cities: ['النفيضة']},
+        {name: 'بوفيشة', cities: ['بوفيشة']},
+        {name: 'كندار', cities: ['كندار']},
+        {name: 'سيدي الهاني', cities: ['سيدي الهاني المركزية']},
+        {name: 'مساكن', cities: ['التوارة الشمالية']},
+        {name: 'القلعة الصغرىة', cities: ['القلعة الصغرى الشرقية']},] },
+    //Monastir
+    { name: 'المنستير', states: [ {name: 'المنستيـر', cities: ['المدينة']},
+        {name: 'الوردانيـن', cities: ['الوردانين ']},
+        {name: 'الساحليـن', cities: ['الساحلين ']},
+        {name: 'زرمديـن', cities: ['المزاوغة']},
+        {name: 'بنـي حسان', cities: ['بني حسان القبلية']},
+        {name: 'جمـال', cities: ['جمال القبلية']},
+        {name: 'بنبلة', cities: ['بنبلة']},
+        {name: 'المكنين', cities: ['المكنين الشرقية']},
+        {name: 'البقالطة', cities: ['البقالطة الشمالية']},
+        {name: 'طبلبة', cities: ['حومة السوق']},
+        {name: 'قصر هلال', cities: ['عياد']},
+        {name: 'قصيبة المديوني', cities: ['قصيبةالمديوني']},
+        {name: 'صيادة لمطة بوحجر', cities: ['صيادة الشرقية']},] },
+    //Mahdia
+    { name: 'المهدية', states: [  {name: 'المهدية', cities: ['الحكايمة الغربية','الحكايمة الشرقية','الرمل','هيبون','الزقانة','الزهراء','الجواودة','السعد','شيبة','رجيش الجنوبية،','رجيش',' زويلة الجنوبية','زويلة','المهدية']},
+        {name: 'بومرداس', cities: ['بومرداس','الحوس','كركر','الزراطة','الرواضي','الشوارعية','بوهلال العلي القبلية','بوهلال العلي الجوفية','منزل حمزة',]},
+        {name: 'أولاد الشامخ', cities: ['أولاد الشامخ الجنوبية','أولاد الشامخ الشمالية','أولاد عمر','الشحيمات الشمالية','العجيلات','السمرة','بوسليم','المحارزة الشمالية',]},
+        {name: 'شربان', cities: ['شربان','المعاطي','الشحدة القبلية','الشحدة الشرقية','القواسم الغربية','القواسم الشرقية','الشرف','القرادحة الغربية','القرادحة الشرقية','أولاد الحناشي',]},
+        {name: 'هبيرة', cities: ['هبيرة']},
+        {name: 'السواسي', cities: ['السواسي']},
+        {name: 'الجم', cities: ['الزاوية']},
+        {name: ' الشابة', cities: ['']},
+        {name: 'ملولش', cities: ['ملولش']},
+        {name: 'سيدي علوان', cities: ['سيدي علوان الغربية']},
+        {name: 'قصور الساف', cities: ['القصر']}] },
+    { name: 'صفاقس', states: [ {name: 'صفاقس المدينة', cities: ['المدينة', 'باب البحر', 'الحي الخيري', 'البساتين']} ] },
+  ];
+
+  states: Array<any> = [];
+  cities: Array<any> = [];
+  changeCountry(country: any) {
+
+    this.states = this.Countries.find((cntry: any) => cntry.name == country.target.value).states; //Angular 11
+  }
+
+  changeState(state: any) {
+    this.cities = this.Countries.find((cntry: any) => cntry.name == this.selectedCountry).states.find((stat: any) => stat.name == state.target.value).cities; //Angular 11
+  }
+
   activity: Activity = {
     title: '',
     description: '',
@@ -38,8 +104,7 @@ export class AddActivityComponent implements OnInit {
 
   constructor(private activityService :ActivityService,
               private router: Router,
-              private toastr: ToastrService,
-              private authService:AuthService) { }
+              private toastr: ToastrService) { }
 
   public listStates: Array<string> = [];
   public listCities: Array<string> = [];
@@ -50,27 +115,9 @@ export class AddActivityComponent implements OnInit {
 
   ngOnInit(): void {
     this.dropdownBeneficiaryCinsRefresh();
-    this.dropdownStatesRefresh();
-    this.dropdownCitiesRefresh();
     this.dropdownDossierTitlesRefresh();
-    this.state = this.authService.state();
   }
 
-  dropdownCitiesRefresh(){
-    this.activityService.getDropDownCities().subscribe(data=>{
-      this.listCities = data;
-      console.log(data);
-
-    })
-  }
-
-  dropdownStatesRefresh(){
-    this.activityService.getDropDownStates().subscribe(data=>{
-      this.listStates = data;
-      console.log(data);
-
-    })
-  }
 
   dropdownBeneficiaryCinsRefresh(){
     this.activityService.getDropDownBeneficiaryCins().subscribe(data=>{
@@ -142,10 +189,6 @@ export class AddActivityComponent implements OnInit {
       creationDate: ''
     };
   }
-  onSelect(state: any){
-    this.city = this.authService.city()
-      .filter(e=>
-        e.stateName == state.target.value);
-  }
+
 
 }

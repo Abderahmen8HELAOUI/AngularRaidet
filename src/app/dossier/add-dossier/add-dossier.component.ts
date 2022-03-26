@@ -3,6 +3,7 @@ import {Dossier} from "../../models/dossier.model";
 import {DossierService} from "../../_services/dossier.service";
 import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
+import {ActivityService} from "../../_services/activity.service";
 
 @Component({
   selector: 'app-add-dossier',
@@ -21,11 +22,22 @@ export class AddDossierComponent implements OnInit {
   };
   submitted = false;
 
+  public listActivityTitles: Array<string> = [];
+
   constructor(private dossierService: DossierService,
               private router: Router,
               private toastr: ToastrService) { }
 
   ngOnInit(): void {
+    this.dropdownDossierTitlesRefresh();
+  }
+
+  dropdownDossierTitlesRefresh(){
+    this.dossierService.getActivityTitles().subscribe(data=>{
+      this.listActivityTitles = data;
+      console.log(data);
+
+    })
   }
 
   saveDossier(): void {

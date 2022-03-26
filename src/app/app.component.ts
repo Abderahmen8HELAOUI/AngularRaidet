@@ -20,10 +20,10 @@ export class AppComponent {
   showAdminBoard = false;
   showModeratorBoard = false;
   username?: string;
+  regionalCommissary?: string;
   title = 'Angular Material 12 Image Upload with Preview';
 
-  constructor(private tokenStorageService: TokenStorageService,
-             private authService:AuthService) { }
+  constructor(private tokenStorageService: TokenStorageService) { }
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
@@ -36,19 +36,14 @@ export class AppComponent {
       this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
 
       this.username = user.username;
+      this.regionalCommissary = user.regionalCommissary;
     }
-    this.state = this.authService.state();
+
   }
 
   logout(): void {
     this.tokenStorageService.signOut();
     window.location.reload();
-  }
-
-  onSelect(state: any){
-    this.city = this.authService.city()
-      .filter(e=>
-        e.stateName == state.target.value);
   }
 
 }

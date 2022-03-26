@@ -1,9 +1,10 @@
 export class Beneficiary {
   id?: any;
-  title?:string;
+  firstName?:string;
   lastname?:string;
   cin?:string;
   birthdate?:string;
+  academicLevel?:string;
   address?:string;
   ville?:string;
   codePostal?:string;

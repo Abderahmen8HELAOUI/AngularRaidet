@@ -43,27 +43,27 @@ export class ActivitiesDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getActivity(this.route.snapshot.params.id);
-    this.dropdownStatesRefresh();
-    this.dropdownCitiesRefresh();
+    // this.dropdownStatesRefresh();
+    // this.dropdownCitiesRefresh();
     this.dropdownBeneficiaryCinsRefresh();
     this.dropdownDossierTitlesRefresh();
   }
 
-  dropdownCitiesRefresh(){
-    this.activityService.getDropDownCities().subscribe(data=>{
-      this.listCities = data;
-      console.log(data);
-
-    })
-  }
-
-  dropdownStatesRefresh(){
-    this.activityService.getDropDownStates().subscribe(data=>{
-      this.listStates = data;
-      console.log(data);
-
-    })
-  }
+  // dropdownCitiesRefresh(){
+  //   this.activityService.getDropDownCities().subscribe(data=>{
+  //     this.listCities = data;
+  //     console.log(data);
+  //
+  //   })
+  // }
+  //
+  // dropdownStatesRefresh(){
+  //   this.activityService.getDropDownStates().subscribe(data=>{
+  //     this.listStates = data;
+  //     console.log(data);
+  //
+  //   })
+  // }
 
   dropdownBeneficiaryCinsRefresh(){
     this.activityService.getDropDownBeneficiaryCins().subscribe(data=>{
