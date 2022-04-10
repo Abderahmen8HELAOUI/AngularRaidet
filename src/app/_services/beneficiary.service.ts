@@ -46,11 +46,11 @@ export class BeneficiaryService {
   }
 
   getDropDownUserNames(): Observable<any>{
-    return this.http.get<User[]>(this.baseUrl + 'userNames');
+    return this.http.get<User[]>(this.baseUrl + 'beneficiaries/userNames');
   }
 
   getDropDownEmails(): Observable<any>{
-    return this.http.get<User[]>(this.baseUrl + 'Emails');
+    return this.http.get<User[]>(this.baseUrl + 'beneficiaries/Emails');
   }
 
   UploadPhoto(val:any){
@@ -62,6 +62,6 @@ export class BeneficiaryService {
   }
 
   getBeneficiaryNumber(){
-    return this.http.get(this.baseUrl + 'beneficiariesNumber');
+    return this.http.get(this.baseUrl + 'beneficiaries/beneficiariesNumber');
   }
 }

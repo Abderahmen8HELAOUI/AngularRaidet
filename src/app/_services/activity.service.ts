@@ -48,15 +48,15 @@ export class ActivityService {
   }
 
   getDropDownDossierTitles(): Observable<any>{
-    return this.http.get<Dossier[]>(this.baseUrl + 'dossierTitles');
+    return this.http.get<Dossier[]>(this.baseUrl + 'activities/dossierTitles');
   }
 
   getTotalNumber(){
-    return this.http.get(this.baseUrl + 'activitiesNumber');
+    return this.http.get(this.baseUrl + 'activities/activitiesNumber');
   }
 
   getActivitiesTotalAmount(){
-    return this.http.get(this.baseUrl + 'activitiesTotalAmount');
+    return this.http.get(this.baseUrl + 'activities/activitiesTotalAmount');
   }
 
 
