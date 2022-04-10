@@ -40,14 +40,19 @@
       </div>
 
       <div class="form-group">
-        <label for="activityTitle">activityTitle</label>
-        <input
+        <label for="activityTitle"style="color: #000000;">! إختر معرف النشاط</label>
+        <select
           class="form-control"
           id="activityTitle"
-          required
+          title="معرف النشاط"
           [(ngModel)]="dossier.activityTitle"
-          name="description"
-        />
+          name="activityTitle"
+          #activityTitle="ngModel"
+          [class.invalid]="activityTitle.invalid && activityTitle.touched">
+          <option *ngFor="let dl of listActivityTitles" [value]="dl" >
+            {{ dl }}
+          </option>
+        </select>
       </div>
 
       <button (click)="saveDossier()" class="btn btn-success">Submit</button>

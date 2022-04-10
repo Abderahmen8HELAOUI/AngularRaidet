@@ -15,7 +15,11 @@
                   required
                   #leadingCategory="ngModel"
                   [(ngModel)]="beneficiary.leadingCategory">
+<<<<<<< HEAD
             <option>--Choose Country--</option>
+=======
+            <option>--قم باختيار صف الرائدة--</option>
+>>>>>>> 346ed1d (some changes)
             <option *ngFor="let leadingCategory of leadingCategories">{{leadingCategory.name}}</option>
           </select>
         </div>
@@ -25,27 +29,30 @@
           <select name="leadingSubCategory"
                   id="leadingSubCategory"
                   class="form-control"
-                  required
                   #leadingSubCategory="ngModel"
                   [class.invalid]="leadingSubCategory.invalid && leadingSubCategory.touched"
                   [(ngModel)]="beneficiary.leadingSubCategory">
+<<<<<<< HEAD
             <option>--Choose State--</option>
+=======
+            <option>-- قم باختيار صف الرائدة ذات الأولوية--</option>
+>>>>>>> 346ed1d (some changes)
             <option *ngFor="let leadingSubCategory of leadingSubCategories">{{leadingSubCategory.name}}</option>
           </select>
         </div>
 
         <div class="form-group">
-          <label for="title" style="color: #000000;">إسم المترشحة</label>
+          <label for="firstName" style="color: #000000;">إسم المترشحة</label>
           <input
             type="text"
             class="form-control"
-            id="title"
+            id="firstName"
             title = "إسم المترشحة"
             required
-            [(ngModel)]="beneficiary.title"
-            name="title"
-            #title="ngModel"
-            [class.invalid]="title.invalid && title.touched"
+            [(ngModel)]="beneficiary.firstName"
+            name="firstName"
+            #firstName="ngModel"
+            [class.invalid]="firstName.invalid && firstName.touched"
           />
         </div>
 
@@ -64,14 +71,14 @@
         </div>
 
         <div class="form-group">
-          <label for="title"style="color: #000000;">تاريخ الميلاد</label>
+          <label for="birthdate"style="color: #000000;">تاريخ الميلاد</label>
           <input
             type="date"
             class="form-control"
             id="birthdate"
             required
             title = "تاريخ الميلاد"
-            placeholder="yyyy-mm-dd"
+            placeholder="dd-MM-yyyy"
             [(ngModel)]="beneficiary.birthdate"
             min="1962-01-01" max="2004-01-01"
             name="birthdate"
@@ -96,6 +103,23 @@
             #cin="ngModel"
             [class.invalid]="cin.invalid && cin.touched"
           />
+        </div>
+
+        <div class="form-group">
+          <label for="academicLevel" style="color: #000000;">!إختر المستوي العلمي</label>
+          <select name="academicLevel"
+                  id="academicLevel"
+                  class="form-control"
+                  required
+                  #academicLevel="ngModel"
+                  [(ngModel)]="beneficiary.academicLevel">
+            <option>--قم باختيار المستوي العلمي--</option>
+            <option value="volvo">أمية</option>
+            <option value="saab">إبتدائي</option>
+            <option value="mercedes">إعدادي</option>
+            <option value="audi">ثانوي</option>
+            <option value="audi">عالي</option>
+          </select>
         </div>
 
         <div class="form-group">
@@ -142,10 +166,7 @@
             name="governorate"
             #governorate="ngModel"
             [class.invalid]="governorate.invalid && governorate.touched">
-<!--            <option *ngFor="let dl of listStates" [value]="dl" >-->
-<!--              {{ dl }}-->
-<!--            </option>-->
-            <option>--Choose Country--</option>
+            <option>--إختر الولاية--</option>
             <option *ngFor="let country of Countries">{{country.name}}</option>
           </select>
         </div>
@@ -162,10 +183,7 @@
             name="ville"
             #ville="ngModel"
             [class.invalid]="ville.invalid && ville.touched">
-<!--            <option *ngFor="let st of listCities" [value]="st" >-->
-<!--              {{ st }}-->
-<!--            </option>-->
-            <option>--Choose State--</option>
+            <option>--إختر المدينة--</option>
             <option *ngFor="let state of states">{{state.name}}</option>
           </select>
         </div>
@@ -229,17 +247,20 @@
 
 
         <div class="form-group">
-          <label for="description"style="color: #000000;">البريد الإلكتروني</label>
-          <input
-            type="email"
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-            title="البريد الإلكتروني يجب أن يحتوي على الصيغة التالية admin@gmail.com"
-            placeholder="admin@gmail.com"
+          <label for="email"style="color: #000000;">البريد الإلكتروني</label>
+          <select
             class="form-control"
             id="email"
+            required
+            title="إسم المستخدم"
             [(ngModel)]="beneficiary.mail"
             name="email"
-          />
+            #email="ngModel"
+            [class.invalid]="email.invalid && email.touched">
+            <option *ngFor="let un of listEmails" [value]="un" >
+              {{ un }}
+            </option>
+          </select>
         </div>
 
         <div class="form-group">
@@ -277,6 +298,7 @@
           </select>
         </div>
 
+<<<<<<< HEAD
         <div class="form-group">
           <label for="activityTitle"style="color: #000000;">! إختر معرف النشاط</label>
           <select
@@ -295,6 +317,8 @@
         </div>
 
 
+=======
+>>>>>>> 346ed1d (some changes)
         <button (click)="saveBeneficiary()" class="btn btn-info btn-lg btn-block" [disabled]="form.invalid">Submit</button>
       </div>
 
@@ -304,8 +328,5 @@
     </div>
   </div>
 </form>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
-<script src="hide-show-fields-form.js"></script>
 </body>
 

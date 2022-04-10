@@ -59,65 +59,37 @@
           </div>
 
           <div class="form-group">
-            <label for="description">الولاية</label>
+            <label for="description"style="color: #000000;">! إختر الولاية</label>
             <select
               class="form-control"
               id="governorate"
               required
+              title="الولاية"
+              [(ngModel)]="selectedCountry" (change)="changeCountry($event)"
               [(ngModel)]="activity.governorate"
               name="governorate"
               #governorate="ngModel"
               [class.invalid]="governorate.invalid && governorate.touched">
-              <option *ngFor="let dl of listStates" [value]="dl" >
-                {{ dl }}
-              </option>
+              <option>--إختر الولاية--</option>
+              <option *ngFor="let country of Countries">{{country.name}}</option>
             </select>
-<!--            <select (change)="onSelect($event)"-->
-<!--                    class="form-control"-->
-<!--                    id="governorate"-->
-<!--                    required-->
-<!--                    [(ngModel)]="activity.governorate"-->
-<!--                    name="governorate"-->
-<!--                    #governorate="ngModel"-->
-<!--                    [class.invalid]="governorate.invalid && governorate.touched">-->
-<!--                    <option>إختر ولاية</option>-->
-<!--                    <option *ngFor="let states of state"-->
-<!--                                    value="{{states.name}}">-->
-<!--                              {{states.name}}-->
-<!--                    </option>-->
-<!--              </select>-->
           </div>
-
-                        <div class="form-group">
-                          <label for="description">المدينة</label>
-                          <select
-                            class="form-control"
-                            id="ville"
-                            required
-                            [(ngModel)]="activity.ville"
-                            name="ville"
-                            #ville="ngModel"
-                            [class.invalid]="ville.invalid && ville.touched">
-                            <option *ngFor="let st of listCities" [value]="st" >
-                              {{ st }}
-                            </option>
-                          </select>
-
-<!--                          <select-->
-<!--                            class="form-control"-->
-<!--                          id="ville"-->
-<!--                          required-->
-<!--                          [(ngModel)]="activity.ville"-->
-<!--                          name="ville"-->
-<!--                          #ville="ngModel"-->
-<!--                          [class.invalid]="ville.invalid && ville.touched">-->
-<!--                            <option>إختر معتمدية</option>-->
-<!--                            <option *ngFor="let cities of-->
-<!--     city">{{cities.name}}</option>-->
-<!--                          </select>-->
-
-                        </div>
-
+          <div class="form-group">
+            <label for="description"style="color: #000000;">! إختر المدينة</label>
+            <select
+              class="form-control"
+              id="ville"
+              required
+              title="المدينة"
+              (change)="changeState($event)"
+              [(ngModel)]="activity.ville"
+              name="ville"
+              #ville="ngModel"
+              [class.invalid]="ville.invalid && ville.touched">
+              <option>--إختر المدينة--</option>
+              <option *ngFor="let state of states">{{state.name}}</option>
+            </select>
+          </div>
                         <div class="form-group">
                           <label for="description">المعرف الجبائي</label>
                           <input
@@ -215,22 +187,6 @@
                             #beneficiaryCin="ngModel"
                             [class.invalid]="beneficiaryCin.invalid && beneficiaryCin.touched">
                             <option *ngFor="let st of listBeneficiaryCins" [value]="st" >
-                              {{ st }}
-                            </option>
-                          </select>
-                        </div>
-
-                        <div class="form-group">
-                          <label for="dossierTitle">معرف الملف</label>
-                          <select
-                            class="form-control"
-                            id="dossierTitle"
-                            required
-                            [(ngModel)]="activity.dossierTitle"
-                            name="dossierTitle"
-                            #dossierTitle="ngModel"
-                            [class.invalid]="dossierTitle.invalid && dossierTitle.touched">
-                            <option *ngFor="let st of listDossierTitles" [value]="st" >
                               {{ st }}
                             </option>
                           </select>

@@ -73,6 +73,7 @@ export class AddBeneficiaryComponent implements OnInit {
 
   states: Array<any> = [];
   cities: Array<any> = [];
+
   changeCountry(country: any) {
 
     this.states = this.Countries.find((cntry: any) => cntry.name == country.target.value).states; //Angular 11
@@ -111,12 +112,12 @@ export class AddBeneficiaryComponent implements OnInit {
 
   // UploadImagesComponent
   beneficiary: Beneficiary = {
-    title: '',
+    firstName: '',
     lastname: '',
 
     cin: '',
     birthdate: '',
-
+    academicLevel: '',
     address: '',
     ville: '',
     codePostal: '',
@@ -146,30 +147,14 @@ export class AddBeneficiaryComponent implements OnInit {
   public listCities: Array<string> = [];
   public listUserNames: Array<string> = [];
   public listActivityTitles: Array<string> = [];
+  public listEmails: Array<string> = [];
 
 
   ngOnInit(): void {
     this.imageInfos = this.uploadService.getFiles();
-    this.dropdownStatesRefresh();
-    this.dropdownCitiesRefresh();
     this.dropdownUserNamesRefresh();
     this.dropdownActivityTitlesRefresh();
-  }
-
-  dropdownCitiesRefresh(){
-    this.activityService.getDropDownCities().subscribe(data=>{
-      this.listCities = data;
-      console.log(data);
-
-    })
-  }
-
-  dropdownStatesRefresh(){
-    this.activityService.getDropDownStates().subscribe(data=>{
-      this.listStates = data;
-      console.log(data);
-
-    })
+    this.dropdownUserEmailsRefresh();
   }
 
   dropdownActivityTitlesRefresh(){
@@ -188,14 +173,22 @@ export class AddBeneficiaryComponent implements OnInit {
     })
   }
 
+  dropdownUserEmailsRefresh(){
+    this.beneficiaryService.getDropDownEmails().subscribe(data=>{
+      this.listEmails = data;
+      console.log(data);
+
+    })
+  }
+
   saveBeneficiary(): void {
     const data = {
-      title: this.beneficiary.title,
+      firstName: this.beneficiary.firstName,
       lastname: this.beneficiary.lastname,
 
       birthdate: this.beneficiary.birthdate,
       cin: this.beneficiary.cin,
-
+      academicLevel: this.beneficiary.academicLevel,
       address: this.beneficiary.address,
       ville: this.beneficiary.ville,
       codePostal: this.beneficiary.codePostal,
@@ -228,12 +221,12 @@ export class AddBeneficiaryComponent implements OnInit {
   newActivity(): void {
     this.submitted = false;
     this.beneficiary = {
-      title: '',
+      firstName: '',
       lastname: '',
 
       cin: '',
       birthdate: '',
-
+      academicLevel: '',
       address: '',
       ville: '',
       codePostal: '',

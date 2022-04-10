@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl:'https://gestion-raidet.herokuapp.com/'
+  baseUrl:'https://gestion-raidet.herokuapp.com/api/'
 };

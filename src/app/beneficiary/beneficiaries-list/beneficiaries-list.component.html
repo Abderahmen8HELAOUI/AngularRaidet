@@ -40,6 +40,7 @@
         <th>الإسم و اللقب</th>
         <th>العنوان</th>
         <th>ب. ت. و</th>
+        <th>المستوى التعليمي</th>
         <th>صورة المترشحة</th>
         <th>البريد الإلكتروني</th>
         <th>الهاتف</th>
@@ -62,9 +63,10 @@
      let i = index"
           [class.active]="i == currentIndex">
 
-        <td class="table-warning">{{beneficiary.title}}&nbsp;{{ beneficiary.lastname }} </td>
+        <td class="table-warning">{{beneficiary.firstName}}&nbsp;{{ beneficiary.lastname }} </td>
         <td>{{beneficiary.address}}&nbsp;{{ beneficiary.codePostal}},&nbsp;{{ beneficiary.ville}},&nbsp;{{ beneficiary.governorate}}</td>
         <td>{{beneficiary.cin}}</td>
+        <td>{{beneficiary.academicLevel}}</td>
         <td>{{beneficiary.photo}}</td>
         <td>{{beneficiary.mail}}</td>
         <td>{{beneficiary.numTel}}</td>
@@ -85,7 +87,7 @@
       <h1 style="font-family: Amiri;">المترشحة</h1>
       <div>
         <label><strong>الإسم:</strong></label>
-        {{ currentBeneficiary.title }}
+        {{ currentBeneficiary.firstName }}
       </div>
       <div>
         <label><strong>اللقب:</strong></label>
@@ -105,7 +107,7 @@
       <div>
         <label><strong>صورة المترشحة:</strong></label>
 
-        <img src="https://gestion-raidet.herokuapp.com/api/auth/files/{{ currentBeneficiary.photo }}"
+        <img src="http://localhost:8080/api/auth/files/{{ currentBeneficiary.photo }}"
              alt="Smiley face"
              >
 
@@ -124,6 +126,12 @@
         <label><strong>تاريخ الميلاد:</strong></label>
         {{ currentBeneficiary.birthdate | date:'dd-MM-yyyy, h:mm' }}
       </div>
+
+      <div>
+        <label><strong>المستوى التعليمي:</strong></label>
+        {{ currentBeneficiary.academicLevel }}
+      </div>
+
       <div>
         <label><strong>معرف النشاط:</strong></label>
         {{ currentBeneficiary.activityTitle }}

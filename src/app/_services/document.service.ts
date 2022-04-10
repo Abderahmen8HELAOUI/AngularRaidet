@@ -4,8 +4,6 @@ import {Observable} from "rxjs";
 import { Document } from '../models/document.model';
 import {environment} from "../../environments/environment";
 
-const baseUrl = 'https://gestion-raidet.herokuapp.com/api/documents';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -16,30 +14,27 @@ export class DocumentService {
   constructor(private http: HttpClient) { }
 
   getAll(params: any): Observable<any> {
-    return this.http.get<any>(this.baseUrl + 'api/documents', { params });
+    return this.http.get<any>(this.baseUrl + 'documents', { params });
   }
 
   get(id: any): Observable<Document> {
-    return this.http.get(this.baseUrl + 'api/documents' + id);
+    return this.http.get(this.baseUrl + 'documents/' + id);
   }
 
   create(data: any): Observable<any> {
-    return this.http.post(this.baseUrl + 'api/documents', data);
+    return this.http.post(this.baseUrl + 'documents' , data);
   }
 
   update(id: any, data: any): Observable<any> {
-    return this.http.put(this.baseUrl + 'api/documents' + id, data);
+    return this.http.put(this.baseUrl + 'documents/' + id, data);
   }
 
   delete(id: any): Observable<any> {
-    return this.http.delete(this.baseUrl + 'api/documents' + id);
+    return this.http.delete(this.baseUrl + 'documents/' + id);
   }
 
   deleteAll(): Observable<any> {
-    return this.http.delete(baseUrl);
+    return this.http.delete(this.baseUrl);
   }
 
-  findByTitle(title: any): Observable<Document[]> {
-    return this.http.get<Document[]>(`${baseUrl}?title=${title}`);
-  }
 }

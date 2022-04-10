@@ -7,8 +7,8 @@ import {User} from "../models/user.model";
 import {environment} from "../../environments/environment";
 
 
-const baseUrl = 'https://gestion-raidet.herokuapp.com/api/beneficiaries';
-const baseFileUrl = 'https://gestion-raidet.herokuapp.com/upload';
+const baseUrl = 'http://localhost:8080/api/beneficiaries';
+const baseFileUrl = 'http://localhost:8080/api/upload';
 
 @Injectable({
   providedIn: 'root'
@@ -16,40 +16,41 @@ const baseFileUrl = 'https://gestion-raidet.herokuapp.com/upload';
 export class BeneficiaryService {
 
   baseUrl = environment.baseUrl;
-  public photoUrl = 'https://gestion-raidet.herokuapp.com/uploads/';
+
+    public photoUrl = 'http://localhost:8080/api/uploads/';
 
   constructor(private http: HttpClient) { }
 
   getAll(params: any): Observable<any> {
-    return this.http.get<any>(this.baseUrl + 'api/beneficiaries', { params });
+    return this.http.get<any>(this.baseUrl + 'beneficiaries', { params });
   }
 
   get(id: any): Observable<Beneficiary> {
-    return this.http.get(this.baseUrl + 'api/beneficiaries' + id);
+    return this.http.get(this.baseUrl + 'beneficiaries/' + id);
   }
 
   create(data: any): Observable<any> {
-    return this.http.post(this.baseUrl + 'api/beneficiaries', data);
+    return this.http.post(this.baseUrl + 'beneficiaries' , data);
   }
 
   update(id: any, data: any): Observable<any> {
-    return this.http.put(this.baseUrl + 'api/beneficiaries' + id, data);
+    return this.http.put(this.baseUrl + 'beneficiaries/' + id, data);
   }
 
   delete(id: any): Observable<any> {
-    return this.http.delete(this.baseUrl + 'api/beneficiaries' + id);
+    return this.http.delete(this.baseUrl + 'beneficiaries/' + id);
   }
 
   deleteAll(): Observable<any> {
-    return this.http.delete(this.baseUrl + 'api/beneficiaries');
-  }
-
-  findByTitle(title: any): Observable<Beneficiary[]> {
-    return this.http.get<Beneficiary[]>(`${baseUrl}?title=${title}`);
+    return this.http.delete(this.baseUrl + 'beneficiaries');
   }
 
   getDropDownUserNames(): Observable<any>{
-    return this.http.get<User[]>(this.baseUrl + 'api/beneficiaries/userNames');
+    return this.http.get<User[]>(this.baseUrl + 'userNames');
+  }
+
+  getDropDownEmails(): Observable<any>{
+    return this.http.get<User[]>(this.baseUrl + 'Emails');
   }
 
   UploadPhoto(val:any){
@@ -57,10 +58,10 @@ export class BeneficiaryService {
   }
 
   getFileName(filename: any): Observable<any> {
-    return this.http.get(`${baseUrl}/${filename}`);
+    return this.http.get(this.baseUrl + filename);
   }
 
   getBeneficiaryNumber(){
-    return this.http.get(this.baseUrl + 'api/beneficiaries/beneficiariesNumber');
+    return this.http.get(this.baseUrl + 'beneficiariesNumber');
   }
 }

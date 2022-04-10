@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {environment} from "../../environments/environment";
 
-const API_URL = 'https://gestion-raidet.herokuapp.com/api/test/';
+const API_URL = 'http://localhost:8080/api/test/';
 
 @Injectable({
   providedIn: 'root'
