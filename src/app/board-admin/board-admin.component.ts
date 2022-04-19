@@ -70,7 +70,7 @@ export class BoardAdminComponent implements OnInit {
 
     this.dossierService.getDocumentNumber().subscribe(
       res => {
-        this.dossierNumber = res;
+        this.documentNumber = res;
         console.log(res);
       }
     );
