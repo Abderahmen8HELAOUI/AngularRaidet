@@ -13,7 +13,7 @@
       novalidate
     >
       <div class="form-group">
-        <label for="username">Username</label>
+        <label for="username">إسم المستخدم</label>
         <input
           type="text"
           class="form-control"
@@ -25,17 +25,17 @@
           #username="ngModel"
         />
         <div class="alert-danger" *ngIf="username.errors && f.submitted">
-          <div *ngIf="username.errors.required">Username is required</div>
+          <div *ngIf="username.errors.required">إسم المستخدم ضروري</div>
           <div *ngIf="username.errors.minlength">
-            Username must be at least 3 characters
+            إسم المستخدم لا يقل عن 3 إحرف
           </div>
           <div *ngIf="username.errors.maxlength">
-            Username must be at most 20 characters
+            إسم المستخدم لا يتجاوز عن 20 حرفا
           </div>
         </div>
       </div>
       <div class="form-group">
-        <label for="email">Email</label>
+        <label for="email">الإيمايل</label>
         <input
           type="email"
           class="form-control"
@@ -46,14 +46,14 @@
           #email="ngModel"
         />
         <div class="alert-danger" *ngIf="email.errors && f.submitted">
-          <div *ngIf="email.errors.required">Email is required</div>
+          <div *ngIf="email.errors.required">الإيمايل ضروري</div>
           <div *ngIf="email.errors.email">
-            Email must be a valid email address
+            يجب إدراج الإيمايل بصيغة معتمدة
           </div>
         </div>
       </div>
       <div class="form-group">
-        <label for="password">Password</label>
+        <label for="password">كلمة العبور</label>
         <input
           type="password"
           class="form-control"
@@ -64,14 +64,14 @@
           #password="ngModel"
         />
         <div class="alert-danger" *ngIf="password.errors && f.submitted">
-          <div *ngIf="password.errors.required">Password is required</div>
+          <div *ngIf="password.errors.required">كلمة العبور ضرورية</div>
           <div *ngIf="password.errors.minlength">
-            Password must be at least 6 characters
+            كلمة العبور لا يجب أن تقل عن 6 أحرف
           </div>
         </div>
       </div>
       <div class="form-group">
-        <label for="regionalCommissary">regionalCommissary</label>
+        <label for="regionalCommissary">المندوبية الجهوية</label>
         <select id="cars"
                 class="form-control"
                 name="regionalCommissary"
@@ -105,21 +105,21 @@
           <option value="المندوبيّة الجهويّة لشؤون المرأة والأسرة بـ: قبلي">المندوبيّة الجهويّة لشؤون المرأة والأسرة بـ: قبلي</option>
         </select>
         <div class="alert-danger" *ngIf="regionalCommissary.errors && f.submitted">
-          <div *ngIf="regionalCommissary.errors.required">regionalCommissary is required</div>
+          <div *ngIf="regionalCommissary.errors.required">المندوبية الجهوية ضرورية</div>
 
         </div>
       </div>
       <div class="form-group">
-        <button class="btn btn-primary btn-block">Sign Up</button>
+        <button class="btn btn-primary btn-block">التسجيل</button>
       </div>
 
       <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
-        Signup failed!<br />{{ errorMessage }}
+        لم تتم علية التسجيل<br />{{ errorMessage }}
       </div>
     </form>
 
-    <div class="alert alert-success" *ngIf="isSuccessful">
-      Your registration is successful!
+    <div class="alert alert-success" *ngIf="isSuccessful" style="text-align: center">
+      تم التسيجيل بنجاح
     </div>
   </div>
 </div>

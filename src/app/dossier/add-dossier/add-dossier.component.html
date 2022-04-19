@@ -2,7 +2,7 @@
   <div class="submit-form">
     <div *ngIf="!submitted">
       <div class="form-group">
-        <label for="title">Title</label>
+        <label for="title">إسم الملف</label>
         <input
           type="text"
           class="form-control"
@@ -14,7 +14,7 @@
       </div>
 
       <div class="form-group">
-        <label for="statusDossier">statusDossier</label>
+        <label for="statusDossier">حالة الملف</label>
         <select name="statusDossier"
                 id="statusDossier"
                 class="form-control"
@@ -28,7 +28,7 @@
       </div>
 
       <div class="form-group">
-        <label for="documentNumber">documentNumber</label>
+        <label for="documentNumber">عدد الوثائق</label>
         <input
           type="text"
           class="form-control"
@@ -55,7 +55,7 @@
         </select>
       </div>
 
-      <button (click)="saveDossier()" class="btn btn-success">Submit</button>
+      <button (click)="saveDossier()" class="btn btn-success">حفظ</button>
     </div>
 
     <div *ngIf="submitted">

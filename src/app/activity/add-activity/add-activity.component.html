@@ -163,7 +163,6 @@
                         <div class="form-group">
                           <label for="description">القيمة</label>
                           <input
-
                             class="form-control"
                             id="amount"
                             required
@@ -192,7 +191,7 @@
                           </select>
                         </div>
 
-                        <button (click)="saveActivity()" class="btn btn-info btn-lg btn-block" [disabled]="form.invalid">Submit</button>
+                        <button (click)="saveActivity()" class="btn btn-success" [disabled]="form.invalid">حفظ</button>
                       </div>
 
                       <div *ngIf="submitted">

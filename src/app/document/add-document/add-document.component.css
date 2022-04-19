@@ -1,0 +1,12 @@
+.submit-form {
+  max-width: 400px;
+  margin: auto;
+  text-align: right;
+}
+body {
+  font-family: Amiri;font-size: 22px;color: green;
+
+}
+label{
+  color: #000000;
+}

@@ -12,9 +12,11 @@ import {DossierService} from "../_services/dossier.service";
 export class BoardAdminComponent implements OnInit {
   content?: string;
   total: any
+  sumWorkerNumber: any
   activitiesTotalAmount: any;
   beneficiariesNumber: any
   dossierNumber: any;
+  documentNumber: any;
 
   constructor(private userService: UserService,
               private activityService: ActivityService,
@@ -38,6 +40,13 @@ export class BoardAdminComponent implements OnInit {
       }
     );
 
+    this.activityService.getSumWorkerNumber().subscribe(
+      res => {
+        this.sumWorkerNumber = res;
+        console.log(res);
+      }
+    );
+
     this.activityService.getActivitiesTotalAmount().subscribe(
       res => {
         this.activitiesTotalAmount = res;
@@ -53,6 +62,13 @@ export class BoardAdminComponent implements OnInit {
     );
 
     this.dossierService.getDossierNumber().subscribe(
+      res => {
+        this.dossierNumber = res;
+        console.log(res);
+      }
+    );
+
+    this.dossierService.getDocumentNumber().subscribe(
       res => {
         this.dossierNumber = res;
         console.log(res);

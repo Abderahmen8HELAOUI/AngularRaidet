@@ -1,5 +1,5 @@
 
-<body style="font-family: Amiri;font-size: 22px;color: green;">
+<body style="font-family: Amiri;font-size: 22px;color: green; text-align: right">
 
 <form novalidate #form="ngForm">
   <div>
@@ -15,11 +15,8 @@
                   required
                   #leadingCategory="ngModel"
                   [(ngModel)]="beneficiary.leadingCategory">
-<<<<<<< HEAD
             <option>--Choose Country--</option>
-=======
             <option>--قم باختيار صف الرائدة--</option>
->>>>>>> 346ed1d (some changes)
             <option *ngFor="let leadingCategory of leadingCategories">{{leadingCategory.name}}</option>
           </select>
         </div>
@@ -32,11 +29,8 @@
                   #leadingSubCategory="ngModel"
                   [class.invalid]="leadingSubCategory.invalid && leadingSubCategory.touched"
                   [(ngModel)]="beneficiary.leadingSubCategory">
-<<<<<<< HEAD
             <option>--Choose State--</option>
-=======
             <option>-- قم باختيار صف الرائدة ذات الأولوية--</option>
->>>>>>> 346ed1d (some changes)
             <option *ngFor="let leadingSubCategory of leadingSubCategories">{{leadingSubCategory.name}}</option>
           </select>
         </div>
@@ -297,8 +291,6 @@
             </option>
           </select>
         </div>
-
-<<<<<<< HEAD
         <div class="form-group">
           <label for="activityTitle"style="color: #000000;">! إختر معرف النشاط</label>
           <select
@@ -315,11 +307,8 @@
             </option>
           </select>
         </div>
+        <button (click)="saveBeneficiary()" class="btn btn-success" [disabled]="form.invalid">حفظ</button>
 
-
-=======
->>>>>>> 346ed1d (some changes)
-        <button (click)="saveBeneficiary()" class="btn btn-info btn-lg btn-block" [disabled]="form.invalid">Submit</button>
       </div>
 
       <div *ngIf="submitted">
