@@ -44,9 +44,11 @@ export class DossierService {
 
   getActivityTitles(): Observable<any>{
     return this.http.get<Activity[]>(this.baseUrl + 'dossiers/activityTitles');
+
   }
 
   getDocumentNumber(){
     return this.http.get(this.baseUrl + 'dossiers/documentNumber');
+
   }
 }

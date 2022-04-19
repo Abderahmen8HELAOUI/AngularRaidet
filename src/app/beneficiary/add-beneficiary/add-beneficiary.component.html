@@ -15,7 +15,10 @@
                   required
                   #leadingCategory="ngModel"
                   [(ngModel)]="beneficiary.leadingCategory">
+
             <option>--Choose Country--</option>
+
+
             <option>--قم باختيار صف الرائدة--</option>
             <option *ngFor="let leadingCategory of leadingCategories">{{leadingCategory.name}}</option>
           </select>
@@ -29,7 +32,10 @@
                   #leadingSubCategory="ngModel"
                   [class.invalid]="leadingSubCategory.invalid && leadingSubCategory.touched"
                   [(ngModel)]="beneficiary.leadingSubCategory">
+
             <option>--Choose State--</option>
+
+
             <option>-- قم باختيار صف الرائدة ذات الأولوية--</option>
             <option *ngFor="let leadingSubCategory of leadingSubCategories">{{leadingSubCategory.name}}</option>
           </select>
@@ -291,6 +297,7 @@
             </option>
           </select>
         </div>
+
         <div class="form-group">
           <label for="activityTitle"style="color: #000000;">! إختر معرف النشاط</label>
           <select
@@ -308,6 +315,10 @@
           </select>
         </div>
         <button (click)="saveBeneficiary()" class="btn btn-success" [disabled]="form.invalid">حفظ</button>
+
+
+
+        <button (click)="saveBeneficiary()" class="btn btn-info btn-lg btn-block" [disabled]="form.invalid">Submit</button>
 
       </div>
 

@@ -57,10 +57,13 @@ export class ActivityService {
 
   getActivitiesTotalAmount(){
     return this.http.get(this.baseUrl + 'activities/activitiesTotalAmount');
+
   }
 
   getSumWorkerNumber(){
     return this.http.get(this.baseUrl + 'activities/sumWorkerNumber');
+
+
   }
 
 
